@@ -7,23 +7,51 @@ on:
 jobs:
   ping-rook:
     runs-on: ubuntu-latest
+
     steps:
       - name: 🔔 Notify Rook on Telegram
         env:
           BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-          GH_PAT: ${{ secrets.GH_PAT }}
           PR_NUM: ${{ github.event.number }}
           REPO: ${{ github.repository }}
           TITLE: ${{ github.event.pull_request.title }}
           AUTHOR: ${{ github.event.pull_request.user.login }}
           URL: ${{ github.event.pull_request.html_url }}
+
         run: |
+          MESSAGE=$(cat <<EOF
+🚨 AUTOMATIC PR REVIEW TASK
+
+Repository: $REPO
+PR: #$PR_NUM
+Title: $TITLE
+Author: $AUTHOR
+
+Pull Request:
+$URL
+
+TASK:
+Review PR #$PR_NUM in repository $REPO.
+
+Review for:
+1. Bugs and logic errors
+2. Security issues
+3. Code quality
+4. Missing tests
+5. Performance concerns
+
+Provide:
+- Verdict (APPROVE / REQUEST_CHANGES / BLOCK)
+- Blocking issues
+- Suggestions
+- Summary
+
+Start the review immediately.
+EOF
+)
+
           curl -s "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
             -d "chat_id=$CHAT_ID" \
-            -d "text=🚨 PR Review Request
-          Repo: $REPO
-          PR #$PR_NUM — $TITLE
-          Author: $AUTHOR
-          $URL" \
+            --data-urlencode "text=$MESSAGE" \
             -d "disable_web_page_preview=true"

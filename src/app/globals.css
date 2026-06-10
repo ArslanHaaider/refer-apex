@@ -1,30 +1,21 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --emerald: #10b981;
-  --emerald-dark: #059669;
-  --charcoal: #1a1a1a;
-  --gray-600: #4b5563;
-  --gray-200: #e5e7eb;
-  --off-white: #f9fafb;
-}
+@theme {
+  /* ReferApex design system */
+  --color-emerald: #10b981;
+  --color-emerald-dark: #059669;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-charcoal: #1a1a1a;
+  --color-gray-600: #4b5563;
+  --color-gray-200: #e5e7eb;
+  --color-off-white: #f9fafb;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-emerald: var(--emerald);
-  --color-emerald-dark: var(--emerald-dark);
-  --color-charcoal: var(--charcoal);
-  --color-gray-600: var(--gray-600);
-  --color-gray-200: var(--gray-200);
-  --color-off-white: var(--off-white);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--charcoal);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }

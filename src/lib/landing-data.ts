@@ -1,5 +1,5 @@
 export const NAV_LINKS = [
-  { label: "Features", href: "#features" },
+  { label: "The Problem", href: "#problems" },
   { label: "Pricing", href: "#pricing" },
   { label: "Testimonials", href: "#social-proof" },
   { label: "FAQ", href: "#faq" },
@@ -55,6 +55,45 @@ export const FEATURES = [
     description:
       "Track reviews, referrals, and revenue impact with real-time insights and trends.",
     icon: "bar-chart" as const,
+  },
+] as const;
+
+export const PROBLEMS = [
+  {
+    title: "Referrals depend on memory, not systems",
+    description:
+      "Your happiest customers would refer you — if the timing and effort weren't in the way. But without a structured moment to ask, the intent fades and the opportunity disappears.",
+    icon: "brain" as const,
+  },
+  {
+    title: "No clear view of what's actually working",
+    description:
+      "Referrals happen, but they're invisible. You can't improve what you can't measure — and right now, there's no clear picture of where your best growth is coming from.",
+    icon: "eye-off" as const,
+  },
+  {
+    title: "Customers who meant to return… don't",
+    description:
+      "Most customers don't leave because they're unhappy — they just get distracted. Without reminders or follow-up, they quietly book elsewhere.",
+    icon: "calendar-x" as const,
+  },
+  {
+    title: "Asking feels uncomfortable, so it gets skipped",
+    description:
+      "In real conversations, asking for referrals often feels awkward or forced. So the moment passes, even when customers are most willing.",
+    icon: "message-square-warning" as const,
+  },
+  {
+    title: "Every missed call is a missed opportunity",
+    description:
+      "A referral calls at the wrong time. It goes to voicemail. By the time you respond, they've already booked with someone else.",
+    icon: "phone-missed" as const,
+  },
+  {
+    title: "Referral activity is happening — just not captured",
+    description:
+      "The system is fragmented. You might be getting referrals already, but there's no central place to track, understand, or scale them.",
+    icon: "puzzle" as const,
   },
 ] as const;
 
@@ -166,7 +205,7 @@ export const FAQ_ITEMS = [
 
 export const FOOTER_LINKS = {
   product: [
-    { label: "Features", href: "#features" },
+    { label: "The Problem", href: "#problems" },
     { label: "Pricing", href: "#pricing" },
     { label: "Integrations", href: "#" },
     { label: "Changelog", href: "#" },

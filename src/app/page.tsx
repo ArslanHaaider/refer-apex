@@ -1,7 +1,7 @@
 import { Header } from "@/components/landing/header";
 import { Hero } from "@/components/landing/hero";
 import { LogoCloud } from "@/components/landing/logo-cloud";
-import { Features } from "@/components/landing/features";
+import { ProblemStatement } from "@/components/landing/problem-statement";
 import { PlatformShowcase } from "@/components/landing/platform-showcase";
 import { Pricing } from "@/components/landing/pricing";
 import { Faq } from "@/components/landing/faq";
@@ -15,7 +15,7 @@ export default function Home() {
       <main>
         <Hero />
         <LogoCloud />
-        <Features />
+        <ProblemStatement />
         <PlatformShowcase />
         <Pricing />
         <Faq />

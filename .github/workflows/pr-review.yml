@@ -1,0 +1,30 @@
+name: PR Review — Rook
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  ping-rook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 🔔 Notify Rook
+        env:
+          BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          PR_NUM: ${{ github.event.number }}
+          REPO: ${{ github.repository }}
+          TITLE: ${{ github.event.pull_request.title }}
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+          URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          curl -s "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
+            -d "chat_id=$CHAT_ID" \
+            -d "text=🚨 PR #$PR_NUM in $REPO
+        Title: $TITLE
+        Author: $AUTHOR
+        $URL" \
+            -d "disable_web_page_preview=true"

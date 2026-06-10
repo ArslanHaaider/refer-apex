@@ -1,5 +1,6 @@
 export const NAV_LINKS = [
   { label: "The Problem", href: "#problems" },
+  { label: "Features", href: "#features" },
   { label: "Pricing", href: "#pricing" },
   { label: "Testimonials", href: "#social-proof" },
   { label: "FAQ", href: "#faq" },
@@ -19,42 +20,84 @@ export const LOGO_CLOUD = [
   "Pure Vive",
 ] as const;
 
-export const FEATURES = [
+export const FEATURE_ITEMS = [
   {
+    number: "01",
     title: "AI Review Requests",
     description:
-      "Automatically send personalized review requests at the perfect moment after each treatment.",
-    icon: "star" as const,
+      "Send personalized review requests at the perfect moment — automatically, after every treatment.",
+    bullets: [
+      "Smart timing based on visit completion",
+      "Personalized message templates",
+      "Real-time review activity tracking",
+    ],
+    icon: "message-circle" as const,
+    mockup: "review-requests" as const,
   },
   {
+    number: "02",
     title: "Review Gatekeeping",
     description:
       "Route unhappy clients to private feedback while directing happy clients to public review sites.",
+    bullets: [
+      "Private feedback capture form",
+      "Sentiment-based routing",
+      "Automated gatekeeping filter",
+    ],
     icon: "shield" as const,
+    mockup: "review-gatekeeping" as const,
   },
   {
+    number: "03",
     title: "AI Review Responses",
     description:
       "Generate thoughtful, on-brand responses to every review in seconds with AI assistance.",
-    icon: "message-circle" as const,
+    bullets: [
+      "AI-suggested response drafts",
+      "One-click approve and post",
+      "On-brand voice matching",
+    ],
+    icon: "sparkles" as const,
+    mockup: "ai-responses" as const,
   },
   {
+    number: "04",
     title: "Referral Automation",
     description:
       "Turn satisfied clients into advocates with automated referral campaigns and tracking.",
+    bullets: [
+      "Referral program management",
+      "Revenue attribution tracking",
+      "Booking status monitoring",
+    ],
     icon: "users" as const,
+    mockup: "referral-automation" as const,
   },
   {
+    number: "05",
     title: "Repeat Visit Campaigns",
     description:
       "Re-engage clients with timely reminders and offers to keep your schedule full.",
+    bullets: [
+      "Visual campaign builder",
+      "Day-based message sequencing",
+      "Automated message previews",
+    ],
     icon: "calendar" as const,
+    mockup: "repeat-campaigns" as const,
   },
   {
+    number: "06",
     title: "Analytics Dashboard",
     description:
       "Track reviews, referrals, and revenue impact with real-time insights and trends.",
+    bullets: [
+      "Review growth overview charts",
+      "Reviews by platform breakdown",
+      "Referral and revenue analytics",
+    ],
     icon: "bar-chart" as const,
+    mockup: "analytics" as const,
   },
 ] as const;
 
@@ -206,6 +249,7 @@ export const FAQ_ITEMS = [
 export const FOOTER_LINKS = {
   product: [
     { label: "The Problem", href: "#problems" },
+    { label: "Features", href: "#features" },
     { label: "Pricing", href: "#pricing" },
     { label: "Integrations", href: "#" },
     { label: "Changelog", href: "#" },

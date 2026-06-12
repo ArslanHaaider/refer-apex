@@ -19,26 +19,34 @@ export function Hero() {
       <Container className="relative">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.2fr)] lg:gap-8 xl:gap-12">
           <div className="relative z-10 max-w-xl lg:max-w-none">
-            <h1 className="text-[40px] font-bold leading-[1.1] tracking-tight text-charcoal sm:text-[48px]">
-              Turn Every Client Visit Into More Reviews, Referrals, and Repeat
-              Bookings
-            </h1>
-            <p className="mt-6 text-lg leading-relaxed text-gray-600">
-              AI-powered automation that helps med spas collect more reviews,
-              generate referrals, and bring clients back — without adding to
-              your team&apos;s workload.
+            <p className="mb-4 text-xs font-bold tracking-[0.2em] text-emerald uppercase">
+              Trusted by 200+ top-rated med spas
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Button.PrimaryLink href="#pricing" size="lg" className="group">
-                Start Free Trial
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </Button.PrimaryLink>
-              <Button.OutlineLink href="#cta" size="lg">
+            <h1 className="max-w-[34rem] text-[40px] font-bold leading-[1.1] tracking-tight text-balance text-charcoal sm:text-[48px]">
+              Turn Every Client Visit Into More{" "}
+              <span className="text-emerald">
+                Reviews, Referrals, and{" "}
+                <span className="whitespace-nowrap">Repeat Bookings</span>
+              </span>
+            </h1>
+            <p className="mt-6 max-w-lg text-lg font-normal leading-relaxed text-gray-500">
+              Put your growth on autopilot. Our AI seamlessly collects reviews,
+              drives referrals, and brings clients back—with zero extra work for
+              your team.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-start">
+              <div className="flex flex-col items-start gap-2">
+                <Button.PrimaryLink href="#pricing" size="lg" className="group">
                 Book Demo
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </Button.PrimaryLink>
+              </div>
+              <Button.OutlineLink href="#cta" size="lg" className="sm:mt-0">
+                Get Started
               </Button.OutlineLink>
             </div>
             <ul className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-3">
-              {TRUST_BADGES.map((badge) => (
+              {TRUST_BADGES.filter((badge) => !badge.startsWith("Trusted by")).map((badge) => (
                 <li key={badge} className="flex items-center gap-2 text-sm text-gray-600">
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald/10">
                     <Check className="h-3 w-3 text-emerald" strokeWidth={3} />

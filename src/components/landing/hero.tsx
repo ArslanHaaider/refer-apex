@@ -6,10 +6,19 @@ import { Container } from "@/components/ui/container";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50/50 to-emerald-50/50 py-20 lg:py-28">
-      <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
+    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50/50 to-emerald-50/50 py-16 lg:py-24">
+      <div
+        className="pointer-events-none absolute -top-24 right-0 h-[32rem] w-[32rem] rounded-full bg-emerald-200/25 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-blue-200/20 blur-3xl"
+        aria-hidden="true"
+      />
+
+      <Container className="relative">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.2fr)] lg:gap-8 xl:gap-12">
+          <div className="relative z-10 max-w-xl lg:max-w-none">
             <h1 className="text-[40px] font-bold leading-[1.1] tracking-tight text-charcoal sm:text-[48px]">
               Turn Every Client Visit Into More Reviews, Referrals, and Repeat
               Bookings
@@ -40,49 +49,22 @@ export function Hero() {
             </ul>
           </div>
 
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/80 shadow-xl backdrop-blur-md">
-              <Image
-                src="/images/landing/hero-dashboard.svg"
-                alt="ReferApex dashboard overview showing review stats and growth chart"
-                width={800}
-                height={600}
-                priority
-                className="h-auto w-full"
-              />
-            </div>
+          <div className="relative -mx-4 sm:-mx-0 lg:mx-0 lg:-mr-8 xl:-mr-16 2xl:-mr-24">
+            <div
+              className="pointer-events-none absolute inset-0 -z-10 scale-110 rounded-[2rem] bg-gradient-to-br from-emerald-100/60 via-blue-50/40 to-transparent blur-2xl"
+              aria-hidden="true"
+            />
 
-            <div className="absolute -bottom-4 -right-2 w-48 rounded-xl border border-white/20 bg-white/80 p-4 shadow-lg backdrop-blur-md sm:-right-4 sm:w-56">
-              <p className="text-xs font-medium text-gray-600">Sentiment Analysis</p>
-              <div className="mt-2 flex items-center gap-3">
-                <div className="relative flex h-14 w-14 items-center justify-center">
-                  <svg className="h-14 w-14 -rotate-90" viewBox="0 0 36 36">
-                    <circle
-                      cx="18"
-                      cy="18"
-                      r="15.5"
-                      fill="none"
-                      stroke="#e5e7eb"
-                      strokeWidth="3"
-                    />
-                    <circle
-                      cx="18"
-                      cy="18"
-                      r="15.5"
-                      fill="none"
-                      stroke="#10b981"
-                      strokeWidth="3"
-                      strokeDasharray="92 100"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                  <span className="absolute text-sm font-bold text-charcoal">92%</span>
-                </div>
-                <div>
-                  <p className="text-lg font-bold text-emerald">Positive</p>
-                  <p className="text-xs text-gray-600">Last 30 days</p>
-                </div>
-              </div>
+            <div className="relative w-full lg:w-[115%] lg:max-w-none xl:w-[120%]">
+              <Image
+                src="/images/landing/hero-dashboard.png"
+                alt="ReferApex dashboard overview showing review stats, growth chart, and sentiment analysis"
+                width={1376}
+                height={768}
+                priority
+                sizes="(max-width: 1024px) 100vw, 62vw"
+                className="h-auto w-full drop-shadow-[0_28px_56px_rgba(16,185,129,0.18)]"
+              />
             </div>
           </div>
         </div>

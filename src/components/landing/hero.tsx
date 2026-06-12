@@ -3,6 +3,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { TRUST_BADGES } from "@/lib/landing-data";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { HighlightHeadlineAccent } from "@/components/landing/highlight-headline-accent";
 
 export function Hero() {
   return (
@@ -22,12 +23,12 @@ export function Hero() {
             <p className="mb-4 text-xs font-bold tracking-[0.2em] text-emerald uppercase">
               Trusted by 200+ top-rated med spas
             </p>
-            <h1 className="max-w-[34rem] text-[40px] font-bold leading-[1.1] tracking-tight text-balance text-charcoal sm:text-[48px]">
+            <h1
+              className="max-w-[34rem] text-[40px] font-bold leading-[1.1] tracking-tight text-balance text-charcoal sm:text-[48px]"
+              aria-label="Turn Every Client Visit Into More Reviews, Referrals, and Repeat Bookings"
+            >
               Turn Every Client Visit Into More{" "}
-              <span className="text-emerald">
-                Reviews, Referrals, and{" "}
-                <span className="whitespace-nowrap">Repeat Bookings</span>
-              </span>
+              <HighlightHeadlineAccent />
             </h1>
             <p className="mt-6 max-w-lg text-lg font-normal leading-relaxed text-gray-500">
               Put your growth on autopilot. Our AI seamlessly collects reviews,
@@ -63,7 +64,7 @@ export function Hero() {
               aria-hidden="true"
             />
 
-            <div className="relative w-full lg:w-[115%] lg:max-w-none xl:w-[120%]">
+            <div className="relative w-full motion-safe:animate-hero-pop lg:w-[115%] lg:max-w-none xl:w-[120%]">
               <Image
                 src="/images/landing/hero-dashboard.png"
                 alt="ReferApex dashboard overview showing review stats, growth chart, and sentiment analysis"

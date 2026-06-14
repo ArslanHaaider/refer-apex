@@ -6,7 +6,7 @@ export function ProblemStatement() {
   return (
     <Section.Root
       id="problems"
-      className="relative overflow-hidden border-t border-gray-200/60 bg-gradient-to-br from-off-white via-white to-emerald-50/40 py-24"
+      className="relative overflow-x-clip border-t border-gray-200/60 bg-gradient-to-br from-off-white via-white to-emerald-50/40 py-24"
     >
       <div
         className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-emerald-200/20 blur-3xl"
@@ -18,9 +18,9 @@ export function ProblemStatement() {
       />
 
       <Container className="relative">
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,0.4fr)_minmax(0,1fr)] lg:gap-20">
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <Section.Eyebrow>The Challenge</Section.Eyebrow>
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.4fr)_minmax(0,1fr)] lg:gap-20">
+          <aside className="lg:sticky lg:top-24 lg:self-start">
+            <Section.Eyebrow className="mb-3">The Challenge</Section.Eyebrow>
             <h2 className="text-[28px] font-semibold leading-tight tracking-tight sm:text-[36px]">
               <span className="text-charcoal">Growth gaps </span>
               <span className="bg-gradient-to-r from-emerald to-emerald-dark bg-clip-text text-transparent">
@@ -32,23 +32,7 @@ export function ProblemStatement() {
               practices lack is the structure to turn that goodwill into
               referrals, rebookings, and measurable revenue.
             </Section.Body>
-
-            <dl className="mt-10 hidden space-y-4 border-t border-gray-200/80 pt-8 lg:block">
-              {PROBLEM_STATS.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="group rounded-xl border border-transparent bg-white/50 px-4 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald/15 hover:bg-white hover:shadow-md hover:shadow-emerald/5"
-                >
-                  <dt className="text-2xl font-semibold tracking-tight text-charcoal transition-colors duration-300 group-hover:text-emerald">
-                    {stat.value}
-                  </dt>
-                  <dd className="mt-1 text-sm leading-snug text-gray-600">
-                    {stat.label}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+          </aside>
 
           <div className="space-y-3">
             {PROBLEMS.map((problem, index) => (
@@ -88,7 +72,7 @@ export function ProblemStatement() {
           </div>
         </div>
 
-        <dl className="mt-14 grid gap-4 border-t border-gray-200/80 pt-10 sm:grid-cols-3 lg:hidden">
+        <dl className="mt-14 grid gap-4 border-t border-gray-200/80 pt-10 sm:grid-cols-3">
           {PROBLEM_STATS.map((stat) => (
             <div
               key={stat.label}

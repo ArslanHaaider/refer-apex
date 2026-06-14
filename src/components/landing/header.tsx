@@ -30,10 +30,10 @@ export function Header() {
 
           <div className="hidden items-center gap-3 md:flex">
             <Button.OutlineLink href="#cta" size="sm">
-              Book Demo
+              Book Demo   
             </Button.OutlineLink>
             <Button.PrimaryLink href="#pricing" size="sm">
-              Start Free Trial
+              Get Started
             </Button.PrimaryLink>
           </div>
 

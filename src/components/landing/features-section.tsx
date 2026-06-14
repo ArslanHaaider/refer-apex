@@ -72,10 +72,11 @@ function useInView(threshold = 0.25) {
 type FeatureRowProps = {
   feature: (typeof FEATURE_ITEMS)[number];
   index: number;
+  activeIndex: number;
   onActive: (index: number) => void;
 };
 
-function FeatureRow({ feature, index, onActive }: FeatureRowProps) {
+function FeatureRow({ feature, index, activeIndex, onActive }: FeatureRowProps) {
   const { ref, inView } = useInView();
   const isReversed = index % 2 === 1;
   const Icon = iconMap[feature.icon];
@@ -104,6 +105,24 @@ function FeatureRow({ feature, index, onActive }: FeatureRowProps) {
       id={`feature-${feature.number}`}
       className="relative py-20 first:pt-0 last:pb-0"
     >
+      <div
+        className="pointer-events-none absolute top-1/2 -left-12 z-20 hidden w-12 -translate-y-1/2 flex-col items-center lg:flex xl:-left-16 xl:w-16"
+        aria-hidden={index !== activeIndex}
+      >
+        <span
+          className={`flex h-4 w-4 rounded-full transition-colors duration-300 ${
+            index <= activeIndex ? "bg-emerald" : "bg-gray-200"
+          }`}
+        />
+        <span
+          className={`mt-1.5 text-xs font-medium transition-colors duration-300 ${
+            index === activeIndex ? "text-emerald" : "text-gray-400"
+          }`}
+        >
+          {feature.number}
+        </span>
+      </div>
+
       <span
         className={`pointer-events-none absolute top-1/2 -translate-y-1/2 select-none text-[10rem] font-bold leading-none text-gray-200/50 sm:text-[12rem] lg:text-[14rem] ${
           isReversed ? "right-0" : "left-0"
@@ -168,36 +187,13 @@ export function FeaturesSection() {
 
         <div className="relative mt-16 lg:mt-20">
           <aside
-            className="pointer-events-none absolute top-0 left-0 hidden h-full w-12 lg:block xl:w-16"
+            className="pointer-events-none absolute top-0 bottom-0 left-0 hidden w-12 lg:block xl:w-16"
             aria-label="Feature progress"
           >
-            <div className="sticky top-32 flex h-[calc(100vh-8rem)] flex-col items-center">
-              <div className="relative flex flex-1 flex-col items-center">
-                <div className="absolute top-0 bottom-0 w-px bg-gray-200" />
-                {FEATURE_ITEMS.map((item, i) => (
-                  <div
-                    key={item.number}
-                    className="relative z-10 flex flex-1 flex-col items-center justify-center"
-                  >
-                    <span
-                      className={`flex h-3 w-3 rounded-full transition-colors duration-300 ${
-                        i <= activeIndex ? "bg-emerald" : "bg-gray-200"
-                      }`}
-                    />
-                    <span
-                      className={`mt-1 text-[10px] font-medium transition-colors duration-300 ${
-                        i === activeIndex ? "text-emerald" : "text-gray-200"
-                      }`}
-                    >
-                      {item.number}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 text-center text-[10px] font-medium tracking-wide text-gray-600 uppercase">
-                Your growth journey
-              </p>
-            </div>
+            <div className="absolute top-0 bottom-8 left-1/2 w-0.5 -translate-x-1/2 bg-gray-200" />
+            <p className="absolute bottom-0 left-0 w-full text-center text-[10px] font-medium tracking-wide text-gray-600 uppercase">
+              Your growth journey
+            </p>
           </aside>
 
           <div className="lg:pl-16 xl:pl-20">
@@ -206,28 +202,47 @@ export function FeaturesSection() {
                 key={feature.number}
                 feature={feature}
                 index={index}
+                activeIndex={activeIndex}
                 onActive={setActiveIndex}
               />
             ))}
           </div>
         </div>
 
-        <div className="mt-12 rounded-3xl bg-emerald px-6 py-10 text-center sm:px-12 sm:py-12">
-          <h3 className="text-2xl font-semibold text-white sm:text-[28px]">
-            Ready to Transform Your Practice?
-          </h3>
-          <p className="mx-auto mt-3 max-w-md text-sm text-white/90">
-            Start your free 14-day trial and see how ReferApex automates your
-            entire growth engine.
-          </p>
-          <Button.PrimaryLink
-            href="#pricing"
-            size="lg"
-            className="group mt-6 bg-white text-emerald hover:bg-off-white"
-          >
-            Start Your Free Trial
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Button.PrimaryLink>
+        <div className="relative mt-12 overflow-hidden rounded-3xl bg-emerald px-6 py-10 text-center sm:px-12 sm:py-12">
+          <div
+            className="pointer-events-none absolute -top-16 right-0 h-48 w-48 rounded-full bg-white/10 blur-3xl"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute -bottom-12 left-1/4 h-40 w-40 rounded-full bg-emerald-dark/30 blur-3xl"
+            aria-hidden="true"
+          />
+
+          <div className="relative">
+            <p className="mb-3 text-sm font-medium tracking-widest text-white/80 uppercase">
+              Get started
+            </p>
+            <h3 className="mx-auto max-w-xl text-[28px] font-semibold leading-tight tracking-tight text-white sm:text-[32px]">
+              Ready to Transform Your Practice?
+            </h3>
+            <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-white/90">
+              See how ReferApex automates reviews, referrals, and repeat
+              bookings from one dashboard.
+            </p>
+            <Button.OutlineLink
+              href="#cta"
+              size="lg"
+              className="group mt-6 border-0 bg-white text-emerald hover:bg-off-white"
+            >
+              Get Started
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Button.OutlineLink>
+            <p className="mt-4 text-sm text-white/80">
+              Your team should be doing treatments, not chasing reviews — let
+              us handle the follow-ups.
+            </p>
+          </div>
         </div>
       </Container>
     </Section.Root>

@@ -1,190 +1,109 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-import {
-  Brain,
-  CalendarX,
-  EyeOff,
-  MessageSquareWarning,
-  PhoneMissed,
-  Puzzle,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import { PROBLEMS } from "@/lib/landing-data";
+import { PROBLEMS, PROBLEM_STATS } from "@/lib/landing-data";
 import { Container } from "@/components/ui/container";
-
-const iconMap: Record<(typeof PROBLEMS)[number]["icon"], LucideIcon> = {
-  brain: Brain,
-  "eye-off": EyeOff,
-  "calendar-x": CalendarX,
-  "message-square-warning": MessageSquareWarning,
-  "phone-missed": PhoneMissed,
-  puzzle: Puzzle,
-};
-
-function useInView(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-
-  return { ref, inView };
-}
+import { Section } from "@/components/ui/section";
 
 export function ProblemStatement() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const { ref: headerRef, inView: headerInView } = useInView(0.4);
-  const { ref: gridRef, inView: gridInView } = useInView(0.08);
-
   return (
-    <section
+    <Section.Root
       id="problems"
-      className="relative overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-emerald-50/30 py-20"
+      className="relative overflow-hidden border-t border-gray-200/60 bg-gradient-to-br from-off-white via-white to-emerald-50/40 py-24"
     >
-      {/* Decorative blobs — same language as Hero */}
       <div
-        className="pointer-events-none absolute -top-24 right-0 h-[28rem] w-[28rem] rounded-full bg-emerald-200/20 blur-3xl"
+        className="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-emerald-200/20 blur-3xl"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-blue-200/20 blur-3xl"
+        className="pointer-events-none absolute bottom-0 left-1/4 h-72 w-72 rounded-full bg-blue-100/30 blur-3xl"
         aria-hidden="true"
       />
 
       <Container className="relative">
-        {/* Header */}
-        <div
-          ref={headerRef}
-          className={`mx-auto max-w-2xl text-center transition-all duration-700 ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 ${
-            headerInView ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
-        >
-          <span className="inline-flex items-center gap-2 rounded-full border border-emerald/20 bg-emerald/10 px-4 py-1.5 text-xs font-bold tracking-[0.25em] text-emerald uppercase">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald" />
-            The Problem
-          </span>
-          <h2 className="mt-6 text-[36px] font-bold leading-[1.1] tracking-tight text-charcoal sm:text-[44px]">
-            Stop leaving your growth
-            <br className="hidden sm:block" /> to chance.
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-gray-500">
-            Every missed referral and quiet return visit is revenue slipping through your fingers.
-          </p>
-        </div>
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,0.4fr)_minmax(0,1fr)] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <Section.Eyebrow>The Challenge</Section.Eyebrow>
+            <h2 className="text-[28px] font-semibold leading-tight tracking-tight sm:text-[36px]">
+              <span className="text-charcoal">Growth gaps </span>
+              <span className="bg-gradient-to-r from-emerald to-emerald-dark bg-clip-text text-transparent">
+                cost more than acquisition
+              </span>
+            </h2>
+            <Section.Body className="max-w-md text-gray-600">
+              Satisfied clients and strong outcomes are already there. What most
+              practices lack is the structure to turn that goodwill into
+              referrals, rebookings, and measurable revenue.
+            </Section.Body>
 
-        {/* Cards grid */}
-        <div
-          ref={gridRef}
-          className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {PROBLEMS.map((problem, index) => {
-            const Icon = iconMap[problem.icon];
-            const isActive = activeIndex === index;
-            const isDimmed = activeIndex !== null && !isActive;
+            <dl className="mt-10 hidden space-y-4 border-t border-gray-200/80 pt-8 lg:block">
+              {PROBLEM_STATS.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="group rounded-xl border border-transparent bg-white/50 px-4 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald/15 hover:bg-white hover:shadow-md hover:shadow-emerald/5"
+                >
+                  <dt className="text-2xl font-semibold tracking-tight text-charcoal transition-colors duration-300 group-hover:text-emerald">
+                    {stat.value}
+                  </dt>
+                  <dd className="mt-1 text-sm leading-snug text-gray-600">
+                    {stat.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
 
-            return (
+          <div className="space-y-3">
+            {PROBLEMS.map((problem, index) => (
               <article
                 key={problem.title}
-                onMouseEnter={() => setActiveIndex(index)}
-                onMouseLeave={() => setActiveIndex(null)}
-                className={`group relative cursor-default overflow-hidden rounded-2xl border bg-white p-6 transition-all duration-500 ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 ${
-                  gridInView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-                } ${
-                  isActive
-                    ? "-translate-y-1.5 border-emerald/40 shadow-[0_8px_40px_-8px_rgba(16,185,129,0.22)]"
-                    : isDimmed
-                      ? "border-gray-100 opacity-60"
-                      : "border-gray-200/80 shadow-sm hover:border-gray-300"
-                }`}
-                style={{ transitionDelay: gridInView ? `${index * 80}ms` : "0ms" }}
+                className="group relative overflow-hidden rounded-2xl border border-gray-200/70 bg-white/60 px-5 py-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald/25 hover:bg-white hover:shadow-lg hover:shadow-emerald/8 sm:px-6 sm:py-7"
               >
-                {/* Faded background number */}
-                <span
-                  className="pointer-events-none absolute -right-1 -top-2 select-none text-8xl font-extrabold leading-none text-gray-100"
-                  aria-hidden="true"
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-
-                {/* Icon */}
-                <div className="relative mb-5 inline-flex">
-                  <div
-                    className={`flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-300 ${
-                      isActive ? "bg-emerald/15" : "bg-gray-100"
-                    }`}
-                  >
-                    <Icon
-                      className={`h-5 w-5 transition-colors duration-300 ${
-                        isActive ? "text-emerald" : "text-gray-400"
-                      }`}
-                      strokeWidth={1.75}
-                    />
-                  </div>
-                  {isActive && (
-                    <span
-                      className="absolute inset-0 animate-ping rounded-xl bg-emerald/20 motion-reduce:hidden"
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-
-                <h3
-                  className={`text-base font-semibold leading-snug transition-colors duration-300 ${
-                    isActive ? "text-emerald" : "text-charcoal"
-                  }`}
-                >
-                  {problem.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-gray-500">
-                  {problem.description}
-                </p>
-
-                {/* Sliding emerald accent at bottom */}
                 <div
-                  className={`absolute bottom-0 left-0 h-0.5 w-full origin-left rounded-full bg-emerald transition-transform duration-500 ${
-                    isActive ? "scale-x-100" : "scale-x-0"
-                  }`}
+                  className="absolute inset-y-0 left-0 w-1 origin-top scale-y-0 rounded-r-full bg-gradient-to-b from-emerald to-emerald-dark transition-transform duration-300 group-hover:scale-y-100"
                   aria-hidden="true"
                 />
+
+                <div className="flex gap-5 sm:gap-7">
+                  <span
+                    aria-hidden="true"
+                    className="w-8 shrink-0 pt-0.5 text-sm font-semibold tabular-nums text-gray-300 transition-all duration-300 group-hover:scale-110 group-hover:text-emerald sm:w-10"
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-base font-semibold text-charcoal transition-colors duration-300 group-hover:text-emerald sm:text-lg">
+                      {problem.title}
+                    </h3>
+                    <p className="mt-2 max-w-2xl text-sm leading-relaxed text-gray-600 transition-colors duration-300 group-hover:text-gray-600/90 sm:text-base">
+                      {problem.description}
+                    </p>
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    className="hidden shrink-0 self-center text-emerald opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 sm:inline"
+                  >
+                    →
+                  </span>
+                </div>
               </article>
-            );
-          })}
+            ))}
+          </div>
         </div>
 
-        {/* Stats row */}
-        <div
-          className={`mt-12 grid grid-cols-3 divide-x divide-gray-200 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-700 delay-500 motion-reduce:translate-y-0 motion-reduce:opacity-100 ${
-            gridInView ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-          }`}
-        >
-          {(
-            [
-              { value: "73%", label: "of clients never refer without a prompt" },
-              { value: "2.4×", label: "more bookings with automated follow-ups" },
-              { value: "$6,200", label: "avg. annual revenue lost per inactive client" },
-            ] as const
-          ).map((stat) => (
+        <dl className="mt-14 grid gap-4 border-t border-gray-200/80 pt-10 sm:grid-cols-3 lg:hidden">
+          {PROBLEM_STATS.map((stat) => (
             <div
               key={stat.label}
-              className="flex flex-col items-center justify-center gap-1 px-4 py-6 text-center"
+              className="group rounded-xl border border-gray-200/70 bg-white/70 px-4 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald/20 hover:bg-white hover:shadow-md hover:shadow-emerald/5"
             >
-              <span className="text-2xl font-bold text-emerald sm:text-3xl">{stat.value}</span>
-              <span className="text-xs leading-snug text-gray-500 sm:text-sm">{stat.label}</span>
+              <dt className="text-2xl font-semibold tracking-tight text-charcoal transition-colors duration-300 group-hover:text-emerald">
+                {stat.value}
+              </dt>
+              <dd className="mt-1 text-sm leading-snug text-gray-600">
+                {stat.label}
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </Container>
-    </section>
+    </Section.Root>
   );
 }

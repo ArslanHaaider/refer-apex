@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Rubik } from "next/font/google";
 import "./globals.css";
 
-const roboto = Roboto({
-  variable: "--font-roboto",
+const rubik = Rubik({
+  variable: "--font-rubik",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${roboto.variable} h-full scroll-smooth antialiased`}>
+    <html lang="en" className={`${rubik.variable} h-full scroll-smooth antialiased`}>
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );

@@ -101,42 +101,42 @@ export const FEATURE_ITEMS = [
   },
 ] as const;
 
+export const PROBLEM_STATS = [
+  { value: "73%", label: "of clients never refer without a structured prompt" },
+  { value: "2.4×", label: "more bookings with consistent follow-up" },
+  { value: "$6,200", label: "average annual revenue lost per inactive client" },
+] as const;
+
 export const PROBLEMS = [
   {
-    title: "Referrals depend on memory, not systems",
+    title: "Referrals go unprompted",
     description:
-      "Your happiest customers would refer you — if the timing and effort weren't in the way. But without a structured moment to ask, the intent fades and the opportunity disappears.",
-    icon: "brain" as const,
+      "Clients who would recommend your practice rarely do without a timely, low-friction ask. When the moment passes, intent fades and the opportunity is gone.",
   },
   {
-    title: "No clear view of what's actually working",
+    title: "Referral performance stays invisible",
     description:
-      "Referrals happen, but they're invisible. You can't improve what you can't measure — and right now, there's no clear picture of where your best growth is coming from.",
-    icon: "eye-off" as const,
+      "Referrals happen, but without attribution you cannot see which channels, staff, or campaigns drive results — or where to invest next.",
   },
   {
-    title: "Customers who meant to return… don't",
+    title: "Inactive clients quietly leave",
     description:
-      "Most customers don't leave because they're unhappy — they just get distracted. Without reminders or follow-up, they quietly book elsewhere.",
-    icon: "calendar-x" as const,
+      "Most clients do not churn because they are unhappy. They simply get busy. Without re-engagement, they book elsewhere without warning.",
   },
   {
-    title: "Asking feels uncomfortable, so it gets skipped",
+    title: "In-person asks get skipped",
     description:
-      "In real conversations, asking for referrals often feels awkward or forced. So the moment passes, even when customers are most willing.",
-    icon: "message-square-warning" as const,
+      "Front-desk teams avoid referral conversations when they feel awkward or off-brand. The result is inconsistent asks, even from your happiest clients.",
   },
   {
-    title: "Every missed call is a missed opportunity",
+    title: "Missed calls become lost bookings",
     description:
-      "A referral calls at the wrong time. It goes to voicemail. By the time you respond, they've already booked with someone else.",
-    icon: "phone-missed" as const,
+      "New referral inquiries rarely wait. A delayed callback often means the client has already scheduled with a competitor.",
   },
   {
-    title: "Referral activity is happening — just not captured",
+    title: "Growth data sits across tools",
     description:
-      "The system is fragmented. You might be getting referrals already, but there's no central place to track, understand, or scale them.",
-    icon: "puzzle" as const,
+      "Reviews, referrals, and rebookings live in separate systems with no unified view. Leaks go unnoticed and improvements are hard to measure.",
   },
 ] as const;
 

@@ -1,0 +1,19 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" rx="16" fill="#f9fafb"/>
+  <rect x="1" y="1" width="798" height="598" rx="15" stroke="#10b981" stroke-width="2" stroke-opacity="0.3"/>
+  <rect x="40" y="40" width="720" height="48" rx="8" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="60" y="70" font-family="system-ui, sans-serif" font-size="16" font-weight="600" fill="#1a1a1a">Overview</text>
+  <rect x="40" y="110" width="220" height="100" rx="12" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="60" y="145" font-family="system-ui, sans-serif" font-size="12" fill="#4b5563">Total Reviews</text>
+  <text x="60" y="180" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#1a1a1a">1,247</text>
+  <rect x="280" y="110" width="220" height="100" rx="12" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="300" y="145" font-family="system-ui, sans-serif" font-size="12" fill="#4b5563">Average Rating</text>
+  <text x="300" y="180" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#10b981">4.9</text>
+  <rect x="520" y="110" width="240" height="100" rx="12" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="540" y="145" font-family="system-ui, sans-serif" font-size="12" fill="#4b5563">Referrals</text>
+  <text x="540" y="180" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#1a1a1a">342</text>
+  <rect x="40" y="230" width="720" height="330" rx="12" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="60" y="265" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1a1a1a">Review Growth</text>
+  <polyline points="80,500 180,420 280,450 380,350 480,380 580,280 680,300 720,250" stroke="#10b981" stroke-width="3" fill="none"/>
+  <text x="400" y="560" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#9ca3af">Dashboard mockup placeholder</text>
+</svg>

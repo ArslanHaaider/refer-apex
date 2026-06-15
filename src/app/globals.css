@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ReferApex design system */
+  --color-emerald: #10b981;
+  --color-emerald-dark: #059669;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-charcoal: #1a1a1a;
+  --color-gray-600: #4b5563;
+  --color-gray-200: #e5e7eb;
+  --color-off-white: #f9fafb;
+
+  --font-sans: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-hero-pop: hero-image-pop 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes highlight-reveal-word {
+  0% {
+    color: #1a1a1a;
+    background-size: 0% 100%;
+  }
+  100% {
+    color: #10b981;
+    background-size: 100% 100%;
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.highlight-reveal-word {
+  background-image: linear-gradient(
+    to right,
+    color-mix(in srgb, #10b981 20%, transparent),
+    color-mix(in srgb, #10b981 20%, transparent)
+  );
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding-inline: 0.08em;
+  border-radius: 0.15em;
+  animation: highlight-reveal-word 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highlight-reveal-word {
+    animation: none;
+    color: #10b981;
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes hero-image-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) translateY(16px);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.025) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-family: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes icon-breathe {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.12);
+  }
+}
+
+@keyframes card-shimmer {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-icon-breathe {
+  animation: icon-breathe 2.8s ease-in-out infinite;
+}
+
+.animate-card-shimmer {
+  animation: card-shimmer 3s ease-in-out infinite;
 }

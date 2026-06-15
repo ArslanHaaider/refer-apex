@@ -97,10 +97,27 @@ function OutlineLink({
   );
 }
 
+function GhostLink({
+  children,
+  size = "md",
+  className = "",
+  ...props
+}: BaseProps & AnchorHTMLAttributes<HTMLAnchorElement>) {
+  return (
+    <a
+      className={`${baseClasses} text-gray-600 hover:bg-off-white hover:text-charcoal ${sizeClasses[size]} ${className}`}
+      {...props}
+    >
+      {children}
+    </a>
+  );
+}
+
 export const Button = {
   Primary,
   Outline,
   Ghost,
   PrimaryLink,
   OutlineLink,
+  GhostLink,
 };

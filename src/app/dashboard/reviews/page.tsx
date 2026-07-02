@@ -1,10 +1,7 @@
-import { PlaceholderPage } from "@/components/dashboard/placeholder-page";
+import { requireUser } from "@/lib/auth/get-user";
+import { ReviewsShell } from "@/components/dashboard/reviews/reviews-shell";
 
-export default function ReviewsPage() {
-  return (
-    <PlaceholderPage
-      title="Reviews"
-      description="Track new Google reviews, request status, and rating trends for your locations."
-    />
-  );
+export default async function ReviewsPage() {
+  await requireUser();
+  return <ReviewsShell />;
 }

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { forwardRef, type ReactNode } from "react";
 
 type SectionRootProps = {
   children: ReactNode;
@@ -6,13 +6,16 @@ type SectionRootProps = {
   className?: string;
 };
 
-function Root({ children, id, className = "" }: SectionRootProps) {
+const Root = forwardRef<HTMLElement, SectionRootProps>(function Root(
+  { children, id, className = "" },
+  ref,
+) {
   return (
-    <section id={id} className={`py-20 ${className}`}>
+    <section ref={ref} id={id} className={`py-20 ${className}`}>
       {children}
     </section>
   );
-}
+});
 
 type SectionTextProps = {
   children: ReactNode;

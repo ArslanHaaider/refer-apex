@@ -36,19 +36,6 @@ export function PlatformShowcase() {
                   </div>
                   <TrendingUp className="h-5 w-5 text-emerald" />
                 </div>
-                <svg className="mt-2 h-8 w-full" viewBox="0 0 120 32" preserveAspectRatio="none">
-                  <polyline
-                    points="0,28 20,24 40,20 60,18 80,12 100,8 120,4"
-                    fill="none"
-                    stroke="#10b981"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </div>
-              <div className="rounded-xl border border-gray-200/60 bg-white/80 p-4 shadow-lg backdrop-blur-md">
-                <p className="text-xs font-medium text-gray-600">Total Revenue</p>
-                <p className="text-2xl font-bold text-charcoal">AED 124,850</p>
-                <p className="mt-1 text-xs text-emerald">+12% this month</p>
               </div>
             </div>
           </div>
@@ -119,13 +106,35 @@ export function PlatformShowcase() {
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 rounded-2xl border border-gray-200/60 bg-white p-6 shadow-lg sm:grid-cols-4 sm:gap-8 sm:p-8">
-          {PLATFORM_STATS.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-3xl font-bold text-emerald sm:text-4xl">{stat.value}</p>
-              <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
+        <div className="mt-12 grid gap-4 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
+          <div className="rounded-2xl border border-gray-200/60 bg-white p-5 shadow-lg">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-medium text-gray-600">Total Revenue</p>
+                <p className="text-2xl font-bold text-charcoal">AED 124,850</p>
+                <p className="mt-1 text-xs text-emerald">+12% this month</p>
+              </div>
+              <svg className="h-10 w-28 shrink-0" viewBox="0 0 120 32" preserveAspectRatio="none">
+                <polyline
+                  points="0,28 20,24 40,20 60,18 80,12 100,8 120,4"
+                  fill="none"
+                  stroke="#10b981"
+                  strokeWidth="2"
+                />
+              </svg>
             </div>
-          ))}
+          </div>
+
+          <div className="rounded-2xl border border-gray-200/60 bg-white p-6 shadow-lg sm:p-8">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-8">
+              {PLATFORM_STATS.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <p className="text-3xl font-bold text-emerald sm:text-4xl">{stat.value}</p>
+                  <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </Section.Root>

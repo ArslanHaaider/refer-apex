@@ -29,10 +29,13 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
+            <Button.GhostLink href="/login" size="sm">
+              Sign in
+            </Button.GhostLink>
             <Button.OutlineLink href="#cta" size="sm">
-              Book Demo   
+              Book Demo
             </Button.OutlineLink>
-            <Button.PrimaryLink href="#pricing" size="sm">
+            <Button.PrimaryLink href="/login" size="sm">
               Get Started
             </Button.PrimaryLink>
           </div>
@@ -65,11 +68,14 @@ export function Header() {
                 </a>
               ))}
               <div className="mt-3 flex flex-col gap-2 border-t border-gray-200 pt-4">
+                <Button.GhostLink href="/login" size="md" className="w-full">
+                  Sign in
+                </Button.GhostLink>
                 <Button.OutlineLink href="#cta" size="md" className="w-full">
                   Book Demo
                 </Button.OutlineLink>
-                <Button.PrimaryLink href="#pricing" size="md" className="w-full">
-                  Start Free Trial
+                <Button.PrimaryLink href="/login" size="md" className="w-full">
+                  Get Started
                 </Button.PrimaryLink>
               </div>
             </div>

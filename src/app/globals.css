@@ -97,3 +97,32 @@ body {
 .animate-card-shimmer {
   animation: card-shimmer 3s ease-in-out infinite;
 }
+
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-14px) scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+.animate-particle-float {
+  animation: particle-float 6s ease-in-out infinite;
+}
+
+@keyframes scan-beam {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(500%);
+  }
+}
+
+.animate-scan-beam {
+  animation: scan-beam 2.6s ease-in-out infinite;
+}

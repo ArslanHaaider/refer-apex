@@ -20,15 +20,12 @@ export function Hero() {
       <Container className="relative">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.2fr)] lg:gap-8 xl:gap-12">
           <div className="relative z-10 max-w-xl lg:max-w-none">
-            <p className="mb-4 text-xs font-bold tracking-[0.2em] text-emerald uppercase">
-              Trusted by 200+ top-rated med spas
-            </p>
             <h1
               className="max-w-[34rem] text-[40px] font-bold leading-[1.1] tracking-tight text-balance text-charcoal sm:text-[48px]"
-              aria-label="Turn Every Client Visit Into More Reviews, Referrals, and Repeat Bookings"
+              aria-label="The Only Growth Engine That Your Practice Will Ever Need"
             >
-              Turn Every Client Visit Into More{" "}
-              <HighlightHeadlineAccent />
+              The Only <HighlightHeadlineAccent /> That Your Practice Will
+              Ever Need
             </h1>
             <p className="mt-6 max-w-lg text-lg font-normal leading-relaxed text-gray-500">
               Put your growth on autopilot. Our AI seamlessly collects reviews,

@@ -20,9 +20,20 @@ export const LOGO_CLOUD = [
 ] as const;
 
 export const PROBLEM_STATS = [
-  { value: "73%", label: "of clients never refer without a structured prompt" },
-  { value: "2.4×", label: "more bookings with consistent follow-up" },
-  { value: "$6,200", label: "average annual revenue lost per inactive client" },
+  {
+    value: "83%",
+    label:
+      "of customers say they'd refer a friend. Only 29% actually do. We close that gap.",
+  },
+  {
+    value: "3×",
+    label: "Referrals are 3x more likely to convert than a standard lead. We help you ask for more of them.",
+  },
+  {
+    value: "65%",
+    label:
+      "of service-based revenue is fueled by referrals. Most owners can't tell you which job came from where.",
+  },
 ] as const;
 
 export const PROBLEMS = [

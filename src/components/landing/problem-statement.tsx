@@ -8,9 +8,7 @@ import { Section } from "@/components/ui/section";
 export function ProblemStatement() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const problemRefs = useRef<Array<HTMLElement | null>>([]);
-  const kpiRef = useRef<HTMLDListElement | null>(null);
   const [activeProblemCount, setActiveProblemCount] = useState(0);
-  const [kpiActive, setKpiActive] = useState(false);
 
   useEffect(() => {
     const updateActiveStates = () => {
@@ -22,7 +20,6 @@ export function ProblemStatement() {
         90,
         Math.min(140, viewportHeight * 0.14),
       );
-      const kpiActivationOffset = 36;
       const firstCard = problemRefs.current[0];
 
       if (!firstCard) return;
@@ -39,13 +36,6 @@ export function ProblemStatement() {
               Math.floor(scrollPastTrigger / perCardScrollDistance) + 1,
             );
       setActiveProblemCount(nextActiveProblemCount);
-
-      if (!kpiRef.current) return;
-      const hasLastProblemActivated = nextActiveProblemCount >= PROBLEMS.length;
-      const kpiThresholdScroll =
-        PROBLEMS.length * perCardScrollDistance + kpiActivationOffset;
-      // Trigger KPI cards together shortly after the final problem card is active.
-      setKpiActive(hasLastProblemActivated && scrollPastTrigger >= kpiThresholdScroll);
     };
 
     let rafId = 0;
@@ -88,16 +78,23 @@ export function ProblemStatement() {
           <aside className="lg:sticky lg:top-24 lg:self-start">
             <Section.Eyebrow className="mb-3">The Challenge</Section.Eyebrow>
             <h2 className="text-[28px] font-semibold leading-tight tracking-tight sm:text-[36px]">
-              <span className="text-charcoal">Growth gaps </span>
+              <span className="text-charcoal">Referrals are the </span>
               <span className="bg-gradient-to-r from-emerald to-emerald-dark bg-clip-text text-transparent">
-                cost more than acquisition
+                highest converting leads
               </span>
+              <span className="text-charcoal">.</span>
             </h2>
-            <Section.Body className="max-w-md text-gray-600">
-              Satisfied clients and strong outcomes are already there. What most
-              practices lack is the structure to turn that goodwill into
-              referrals, rebookings, and measurable revenue.
-            </Section.Body>
+
+            <dl className="mt-8 space-y-5 border-t border-gray-200/80 pt-6">
+              {PROBLEM_STATS.map((stat) => (
+                <div key={stat.label} className="flex items-start gap-4">
+                  <dt className="w-16 shrink-0 text-2xl font-bold tracking-tight text-emerald">
+                    {stat.value}
+                  </dt>
+                  <dd className="text-sm leading-relaxed text-gray-600">{stat.label}</dd>
+                </div>
+              ))}
+            </dl>
           </aside>
 
           <div className="space-y-3">
@@ -162,37 +159,6 @@ export function ProblemStatement() {
             })}
           </div>
         </div>
-
-        <dl
-          ref={kpiRef}
-          className="mt-14 grid gap-4 border-t border-gray-200/80 pt-10 sm:grid-cols-3"
-        >
-          {PROBLEM_STATS.map((stat) => {
-            const isActive = kpiActive;
-
-            return (
-              <div
-                key={stat.label}
-                className={`rounded-xl border px-4 py-4 transition-all duration-300 ${
-                  isActive
-                    ? "-translate-y-0.5 border-emerald/20 bg-white shadow-md shadow-emerald/5"
-                    : "border-gray-200/70 bg-white/70"
-                }`}
-              >
-                <dt
-                  className={`text-2xl font-semibold tracking-tight transition-colors duration-300 ${
-                    isActive ? "text-emerald" : "text-charcoal"
-                  }`}
-                >
-                  {stat.value}
-                </dt>
-                <dd className="mt-1 text-sm leading-snug text-gray-600">
-                  {stat.label}
-                </dd>
-              </div>
-            );
-          })}
-        </dl>
       </Container>
     </Section.Root>
   );

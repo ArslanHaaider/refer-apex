@@ -20,7 +20,7 @@ export function Faq() {
           <div>
             <Section.Heading>Frequently Asked Questions</Section.Heading>
             <Section.Body>
-              Everything you need to know about ReferApex. Can&apos;t find what
+              Everything you need to know about Iqrava. Can&apos;t find what
               you&apos;re looking for? Reach out to our team.
             </Section.Body>
           </div>

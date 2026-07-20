@@ -85,7 +85,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-8 sm:flex-row">
           <p className="text-sm text-gray-600">
-            &copy; {new Date().getFullYear()} ReferApex. All rights reserved.
+            &copy; {new Date().getFullYear()} Iqrava. All rights reserved.
           </p>
         </div>
       </Container>

@@ -144,14 +144,14 @@ export const PRICING_TIERS = [
 
 export const FAQ_ITEMS = [
   {
-    question: "How does ReferApex integrate with my existing systems?",
+    question: "How does Iqrava integrate with my existing systems?",
     answer:
-      "ReferApex connects with popular booking platforms, CRMs, and review sites. Our team handles setup during onboarding so you can start automating within days, not weeks.",
+      "Iqrava connects with popular booking platforms, CRMs, and review sites. Our team handles setup during onboarding so you can start automating within days, not weeks.",
   },
   {
     question: "Is my client data secure and compliant?",
     answer:
-      "Yes. ReferApex is GDPR compliant and HIPAA ready. All data is encrypted in transit and at rest, with role-based access controls for your team.",
+      "Yes. Iqrava is GDPR compliant and HIPAA ready. All data is encrypted in transit and at rest, with role-based access controls for your team.",
   },
   {
     question: "How long does it take to see results?",

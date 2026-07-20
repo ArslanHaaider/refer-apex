@@ -3,7 +3,7 @@ import { requireUser } from "@/lib/auth/get-user";
 import { DashboardShell } from "@/components/dashboard/shell";
 
 export const metadata: Metadata = {
-  title: "Dashboard — ReferApex",
+  title: "Dashboard — Iqrava",
 };
 
 export default async function DashboardLayout({

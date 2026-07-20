@@ -64,7 +64,7 @@ export function Hero() {
             <div className="relative w-full motion-safe:animate-hero-pop lg:w-[115%] lg:max-w-none xl:w-[120%]">
               <Image
                 src="/images/landing/hero-dashboard.png"
-                alt="ReferApex dashboard overview showing review stats, growth chart, and sentiment analysis"
+                alt="Iqrava dashboard overview showing review stats, growth chart, and sentiment analysis"
                 width={1376}
                 height={768}
                 priority

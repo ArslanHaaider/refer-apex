@@ -9,7 +9,7 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
-  title: "ReferApex — Med Spa Growth Platform",
+  title: "Iqrava — Med Spa Growth Platform",
   description:
     "AI-powered automation to turn every client visit into more reviews, referrals, and repeat bookings for med spas.",
 };

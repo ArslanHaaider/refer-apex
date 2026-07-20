@@ -25,7 +25,7 @@ export function CtaBanner() {
               Ready to Transform Your Med Spa?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/90">
-              Join 200+ med spas across UAE using ReferApex to grow reviews,
+              Join 200+ med spas across UAE using Iqrava to grow reviews,
               referrals, and repeat bookings.
             </p>
 

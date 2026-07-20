@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Check } from "lucide-react";
 import { PRICING_TIERS } from "@/lib/landing-data";
 import { Button } from "@/components/ui/button";
@@ -8,8 +7,6 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 
 export function Pricing() {
-  const [isAnnual, setIsAnnual] = useState(false);
-
   return (
     <Section.Root id="pricing" className="bg-white">
       <Container>
@@ -18,45 +15,13 @@ export function Pricing() {
             <Section.Eyebrow>Pricing</Section.Eyebrow>
             <Section.Heading>Simple, Transparent Pricing</Section.Heading>
             <Section.Body>
-              Choose the plan that fits your practice. All plans include a 14-day
-              free trial with no credit card required.
+              Choose the plan that fits your practice. Book a demo and we will
+              help you select the right setup for your team.
             </Section.Body>
-
-            <div className="mt-8 flex items-center gap-3">
-              <button
-                type="button"
-                role="switch"
-                aria-checked={isAnnual}
-                aria-label="Toggle annual billing"
-                onClick={() => setIsAnnual(!isAnnual)}
-                className={`relative h-7 w-12 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-2 ${
-                  isAnnual ? "bg-emerald" : "bg-gray-200"
-                }`}
-              >
-                <span
-                  className={`absolute top-0.5 left-0.5 h-6 w-6 rounded-full bg-white shadow transition-transform ${
-                    isAnnual ? "translate-x-5" : "translate-x-0"
-                  }`}
-                />
-              </button>
-              <span className="text-sm text-gray-600">
-                Annual{" "}
-                <span className="rounded-full bg-emerald/10 px-2 py-0.5 text-xs font-medium text-emerald">
-                  Save 20%
-                </span>
-              </span>
-            </div>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:col-span-3 lg:grid-cols-3">
             {PRICING_TIERS.map((tier) => {
-              const price =
-                tier.monthlyPrice !== null
-                  ? isAnnual
-                    ? tier.annualPrice
-                    : tier.monthlyPrice
-                  : null;
-
               return (
                 <article
                   key={tier.name}
@@ -74,17 +39,7 @@ export function Pricing() {
 
                   <h3 className="text-lg font-semibold text-charcoal">{tier.name}</h3>
                   <div className="mt-3">
-                    {price !== null ? (
-                      <p className="flex items-baseline gap-1">
-                        <span className="text-4xl font-bold text-charcoal">${price}</span>
-                        <span className="text-sm text-gray-600">/mo</span>
-                      </p>
-                    ) : (
-                      <p className="text-4xl font-bold text-charcoal">Custom</p>
-                    )}
-                    {isAnnual && price !== null ? (
-                      <p className="mt-1 text-xs text-gray-600">Billed annually</p>
-                    ) : null}
+                    <p className="text-4xl font-bold text-charcoal">Custom</p>
                   </div>
                   <p className="mt-3 text-sm text-gray-600">{tier.description}</p>
 

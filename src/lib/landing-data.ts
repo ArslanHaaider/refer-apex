@@ -95,8 +95,8 @@ export const TIMELINE_STEPS = [
 export const PRICING_TIERS = [
   {
     name: "Starter",
-    monthlyPrice: 49,
-    annualPrice: 39,
+    monthlyPrice: null,
+    annualPrice: null,
     description: "Perfect for single-location med spas getting started.",
     features: [
       "Up to 500 clients",
@@ -105,13 +105,13 @@ export const PRICING_TIERS = [
       "Email support",
       "1 location",
     ],
-    cta: "Start Free Trial",
+    cta: "Book Demo",
     highlighted: false,
   },
   {
     name: "Professional",
-    monthlyPrice: 99,
-    annualPrice: 79,
+    monthlyPrice: null,
+    annualPrice: null,
     description: "For growing practices ready to scale referrals.",
     features: [
       "Unlimited clients",
@@ -121,7 +121,7 @@ export const PRICING_TIERS = [
       "Priority support",
       "Up to 3 locations",
     ],
-    cta: "Start Free Trial",
+    cta: "Book Demo",
     highlighted: true,
   },
   {

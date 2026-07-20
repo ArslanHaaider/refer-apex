@@ -111,7 +111,7 @@ export function PlatformShowcase() {
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="text-xs font-medium text-gray-600">Total Revenue</p>
-                <p className="text-2xl font-bold text-charcoal">AED 124,850</p>
+                <p className="text-2xl font-bold text-charcoal">USD 124,850</p>
                 <p className="mt-1 text-xs text-emerald">+12% this month</p>
               </div>
               <svg className="h-10 w-28 shrink-0" viewBox="0 0 120 32" preserveAspectRatio="none">

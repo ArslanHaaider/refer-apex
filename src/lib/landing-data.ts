@@ -2,7 +2,6 @@ export const NAV_LINKS = [
   { label: "The Problem", href: "#problems" },
   { label: "Features", href: "#features" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Testimonials", href: "#social-proof" },
   { label: "FAQ", href: "#faq" },
 ] as const;
 
@@ -20,91 +19,21 @@ export const LOGO_CLOUD = [
   "Pure Vive",
 ] as const;
 
-export const FEATURE_ITEMS = [
-  {
-    number: "01",
-    title: "AI Review Requests",
-    description:
-      "Send personalized review requests at the perfect moment — automatically, after every treatment.",
-    bullets: [
-      "Smart timing based on visit completion",
-      "Personalized message templates",
-      "Real-time review activity tracking",
-    ],
-    icon: "message-circle" as const,
-    mockup: "review-requests" as const,
-  },
-  {
-    number: "02",
-    title: "Review Gatekeeping",
-    description:
-      "Route unhappy clients to private feedback while directing happy clients to public review sites.",
-    bullets: [
-      "Private feedback capture form",
-      "Sentiment-based routing",
-      "Automated gatekeeping filter",
-    ],
-    icon: "shield" as const,
-    mockup: "review-gatekeeping" as const,
-  },
-  {
-    number: "03",
-    title: "AI Review Responses",
-    description:
-      "Generate thoughtful, on-brand responses to every review in seconds with AI assistance.",
-    bullets: [
-      "AI-suggested response drafts",
-      "One-click approve and post",
-      "On-brand voice matching",
-    ],
-    icon: "sparkles" as const,
-    mockup: "ai-responses" as const,
-  },
-  {
-    number: "04",
-    title: "Referral Automation",
-    description:
-      "Turn satisfied clients into advocates with automated referral campaigns and tracking.",
-    bullets: [
-      "Referral program management",
-      "Revenue attribution tracking",
-      "Booking status monitoring",
-    ],
-    icon: "users" as const,
-    mockup: "referral-automation" as const,
-  },
-  {
-    number: "05",
-    title: "Repeat Visit Campaigns",
-    description:
-      "Re-engage clients with timely reminders and offers to keep your schedule full.",
-    bullets: [
-      "Visual campaign builder",
-      "Day-based message sequencing",
-      "Automated message previews",
-    ],
-    icon: "calendar" as const,
-    mockup: "repeat-campaigns" as const,
-  },
-  {
-    number: "06",
-    title: "Analytics Dashboard",
-    description:
-      "Track reviews, referrals, and revenue impact with real-time insights and trends.",
-    bullets: [
-      "Review growth overview charts",
-      "Reviews by platform breakdown",
-      "Referral and revenue analytics",
-    ],
-    icon: "bar-chart" as const,
-    mockup: "analytics" as const,
-  },
-] as const;
-
 export const PROBLEM_STATS = [
-  { value: "73%", label: "of clients never refer without a structured prompt" },
-  { value: "2.4×", label: "more bookings with consistent follow-up" },
-  { value: "$6,200", label: "average annual revenue lost per inactive client" },
+  {
+    value: "83%",
+    label:
+      "of customers say they'd refer a friend. Only 29% actually do. We close that gap.",
+  },
+  {
+    value: "3×",
+    label: "Referrals are 3x more likely to convert than a standard lead. We help you ask for more of them.",
+  },
+  {
+    value: "65%",
+    label:
+      "of service-based revenue is fueled by referrals. Most owners can't tell you which job came from where.",
+  },
 ] as const;
 
 export const PROBLEMS = [
@@ -215,14 +144,14 @@ export const PRICING_TIERS = [
 
 export const FAQ_ITEMS = [
   {
-    question: "How does ReferApex integrate with my existing systems?",
+    question: "How does Iqrava integrate with my existing systems?",
     answer:
-      "ReferApex connects with popular booking platforms, CRMs, and review sites. Our team handles setup during onboarding so you can start automating within days, not weeks.",
+      "Iqrava connects with popular booking platforms, CRMs, and review sites. Our team handles setup during onboarding so you can start automating within days, not weeks.",
   },
   {
     question: "Is my client data secure and compliant?",
     answer:
-      "Yes. ReferApex is GDPR compliant and HIPAA ready. All data is encrypted in transit and at rest, with role-based access controls for your team.",
+      "Yes. Iqrava is GDPR compliant and HIPAA ready. All data is encrypted in transit and at rest, with role-based access controls for your team.",
   },
   {
     question: "How long does it take to see results?",

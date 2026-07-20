@@ -3,9 +3,7 @@
 import { useEffect, useState } from "react";
 
 const SEGMENTS = [
-  { id: "reviews", text: "Reviews", prefix: "" },
-  { id: "referrals", text: "Referrals", prefix: ", " },
-  { id: "repeat", text: "Repeat Bookings", prefix: ", and ", nowrap: true },
+  { id: "growth-engine", text: "Growth Engine", prefix: "", nowrap: true },
 ] as const;
 
 const REVEAL_INTERVAL_MS = 550;

@@ -40,7 +40,7 @@ export function LoginForm() {
           <p className="mt-2 text-sm text-gray-600">
             {mode === "signin"
               ? "Sign in to manage reviews, referrals, and bookings."
-              : "Start growing your med spa with ReferApex."}
+              : "Start growing your med spa with Iqrava."}
           </p>
         </div>
 

@@ -1,8 +1,10 @@
+import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
+import { createClient } from "@/utils/supabase/server";
 import { exchangeCodeForTokens } from "@/lib/reviews/google-business-api";
+import { saveGoogleConnection } from "@/lib/reviews/google-connection";
 
 // Real OAuth callback. Only active when GOOGLE_MOCK=false.
-// Stores tokens in Supabase google_connections table (create this table first).
 const USE_MOCK = process.env.GOOGLE_MOCK !== "false";
 
 export async function GET(request: NextRequest) {
@@ -28,27 +30,26 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const supabase = createClient(await cookies());
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
   try {
     const tokens = await exchangeCodeForTokens(code);
-
-    // TODO: Store tokens in Supabase google_connections table:
-    // const supabase = createClient(await cookies());
-    // const { data: { user } } = await supabase.auth.getUser();
-    // await supabase.from("google_connections").upsert({
-    //   user_id: user.id,
-    //   access_token: tokens.accessToken,
-    //   refresh_token: tokens.refreshToken,
-    //   expires_at: new Date(Date.now() + tokens.expiresIn * 1000).toISOString(),
-    // });
-
-    void tokens; // Remove when Supabase insert is implemented
+    await saveGoogleConnection(supabase, user.id, tokens);
 
     const response = NextResponse.redirect(
       new URL("/dashboard/reviews", request.url),
     );
     response.cookies.delete("google_oauth_state");
     return response;
-  } catch {
+  } catch (err) {
+    console.error("Google OAuth callback failed:", err instanceof Error ? err.message : err);
     return NextResponse.redirect(
       new URL("/dashboard/reviews?error=token_exchange_failed", request.url),
     );

@@ -7,8 +7,8 @@ export const NAV_LINKS = [
 
 export const TRUST_BADGES = [
   "Trusted by 200+ UAE Med Spas",
-  "GDPR Compliant",
-  "HIPAA Ready",
+  "Encrypted Data at Rest & in Transit",
+  "Role-Based Access Controls",
 ] as const;
 
 export const LOGO_CLOUD = [
@@ -149,9 +149,9 @@ export const FAQ_ITEMS = [
       "Iqrava connects with popular booking platforms, CRMs, and review sites. Our team handles setup during onboarding so you can start automating within days, not weeks.",
   },
   {
-    question: "Is my client data secure and compliant?",
+    question: "Is my client data secure?",
     answer:
-      "Yes. Iqrava is GDPR compliant and HIPAA ready. All data is encrypted in transit and at rest, with role-based access controls for your team.",
+      "Yes. All data is encrypted in transit and at rest, with role-based access controls for your team so only the right people can see sensitive client information. See our Privacy Policy for full details on what we collect and how it's protected.",
   },
   {
     question: "How long does it take to see results?",
@@ -196,10 +196,8 @@ export const FOOTER_LINKS = {
     { label: "Webinars", href: "#" },
   ],
   legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Cookie Policy", href: "#" },
-    { label: "GDPR", href: "#" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
   ],
 } as const;
 

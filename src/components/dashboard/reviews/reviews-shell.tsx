@@ -149,6 +149,11 @@ export function ReviewsShell() {
 
   // ── Connect handler ─────────────────────────────────────────────────────
   async function handleConnect() {
+    if (!isMock) {
+      window.location.href = "/api/google/auth";
+      return;
+    }
+
     setConnecting(true);
     try {
       const res = await fetch("/api/google/connect", { method: "POST" });
@@ -162,6 +167,29 @@ export function ReviewsShell() {
     } finally {
       setConnecting(false);
     }
+  }
+
+  // ── Reply handler ───────────────────────────────────────────────────────
+  async function handleReply(reviewId: string, comment: string) {
+    const res = await fetch("/api/google/reviews/reply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ reviewId, comment }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to submit reply");
+    }
+
+    const data = await res.json();
+    setReviews((prev) =>
+      prev.map((r) =>
+        r.id === reviewId
+          ? { ...r, ownerReply: data.ownerReply, ownerReplyUpdatedAt: data.ownerReplyUpdatedAt }
+          : r,
+      ),
+    );
+    setRepliedCount((prev) => prev + 1);
   }
 
   // ── Select location ─────────────────────────────────────────────────────
@@ -328,7 +356,7 @@ export function ReviewsShell() {
           ) : (
             <div className="space-y-3">
               {paginated.map((review) => (
-                <ReviewCard key={review.id} review={review} />
+                <ReviewCard key={review.id} review={review} onReply={handleReply} />
               ))}
             </div>
           )}

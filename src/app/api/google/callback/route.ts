@@ -1,9 +1,20 @@
+import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
+import { createClient } from "@/utils/supabase/server";
+import { checkRateLimit } from "@/lib/security/rate-limit";
 import { exchangeCodeForTokens } from "@/lib/reviews/google-business-api";
+import { saveGoogleConnection } from "@/lib/reviews/google-connection";
 
 // Real OAuth callback. Only active when GOOGLE_MOCK=false.
-// Stores tokens in Supabase google_connections table (create this table first).
 const USE_MOCK = process.env.GOOGLE_MOCK !== "false";
+
+function redirectClearingState(request: NextRequest, path: string): NextResponse {
+  const response = NextResponse.redirect(new URL(path, request.url));
+  // The state cookie is single-use: clear it on every exit path (success or
+  // error) so a stale value can never be validated against a later request.
+  response.cookies.delete("google_oauth_state");
+  return response;
+}
 
 export async function GET(request: NextRequest) {
   if (USE_MOCK) {
@@ -16,41 +27,35 @@ export async function GET(request: NextRequest) {
   const error = searchParams.get("error");
 
   if (error) {
-    return NextResponse.redirect(
-      new URL(`/dashboard/reviews?error=${error}`, request.url),
-    );
+    return redirectClearingState(request, `/dashboard/reviews?error=${error}`);
   }
 
   const storedState = request.cookies.get("google_oauth_state")?.value;
   if (!code || !state || state !== storedState) {
-    return NextResponse.redirect(
-      new URL("/dashboard/reviews?error=invalid_state", request.url),
-    );
+    return redirectClearingState(request, "/dashboard/reviews?error=invalid_state");
+  }
+
+  const supabase = createClient(await cookies());
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return redirectClearingState(request, "/login");
+  }
+
+  const limited = checkRateLimit(`google:callback:${user.id}`, 10, 60_000);
+  if (limited) {
+    return redirectClearingState(request, "/dashboard/reviews?error=rate_limited");
   }
 
   try {
     const tokens = await exchangeCodeForTokens(code);
+    await saveGoogleConnection(supabase, user.id, tokens);
 
-    // TODO: Store tokens in Supabase google_connections table:
-    // const supabase = createClient(await cookies());
-    // const { data: { user } } = await supabase.auth.getUser();
-    // await supabase.from("google_connections").upsert({
-    //   user_id: user.id,
-    //   access_token: tokens.accessToken,
-    //   refresh_token: tokens.refreshToken,
-    //   expires_at: new Date(Date.now() + tokens.expiresIn * 1000).toISOString(),
-    // });
-
-    void tokens; // Remove when Supabase insert is implemented
-
-    const response = NextResponse.redirect(
-      new URL("/dashboard/reviews", request.url),
-    );
-    response.cookies.delete("google_oauth_state");
-    return response;
-  } catch {
-    return NextResponse.redirect(
-      new URL("/dashboard/reviews?error=token_exchange_failed", request.url),
-    );
+    return redirectClearingState(request, "/dashboard/reviews");
+  } catch (err) {
+    console.error("Google OAuth callback failed:", err instanceof Error ? err.message : err);
+    return redirectClearingState(request, "/dashboard/reviews?error=token_exchange_failed");
   }
 }

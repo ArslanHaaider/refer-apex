@@ -1,5 +1,11 @@
+import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
+import { createClient } from "@/utils/supabase/server";
+import { requireApiUser } from "@/lib/auth/api-auth";
+import { checkRateLimit } from "@/lib/security/rate-limit";
 import { getMockReviews } from "@/lib/reviews/mock-data";
+import { getValidAccessToken } from "@/lib/reviews/google-connection";
+import { fetchReviews } from "@/lib/reviews/google-business-api";
 import type { ReviewsPayload } from "@/lib/reviews/types";
 
 const USE_MOCK = process.env.GOOGLE_MOCK !== "false";
@@ -9,6 +15,7 @@ export async function GET(
 ): Promise<NextResponse<ReviewsPayload | { error: string }>> {
   const { searchParams } = new URL(request.url);
   const locationId = searchParams.get("locationId");
+  const pageToken = searchParams.get("pageToken") ?? undefined;
 
   if (!locationId) {
     return NextResponse.json({ error: "locationId is required" }, { status: 400 });
@@ -24,11 +31,31 @@ export async function GET(
     return NextResponse.json(payload);
   }
 
-  // Real mode: fetch from Google Business Profile API.
-  // Steps to implement:
-  //   1. Get user's access token from Supabase google_connections table
-  //   2. Refresh token if expired via refreshAccessToken()
-  //   3. Call fetchReviews() from google-business-api.ts
-  //   4. Optionally cache results in google_reviews table
-  return NextResponse.json({ error: "Not implemented" }, { status: 501 });
+  const supabase = createClient(await cookies());
+  const auth = await requireApiUser(supabase);
+  if (auth.error) return auth.error;
+
+  const limited = checkRateLimit(`google:reviews:${auth.userId}`, 30, 60_000);
+  if (limited) return limited;
+
+  const connection = await getValidAccessToken(supabase, auth.userId);
+  if (!connection) {
+    return NextResponse.json({ error: "Not connected" }, { status: 400 });
+  }
+
+  try {
+    const result = await fetchReviews(connection.accessToken, locationId, pageToken);
+    const repliedCount = result.reviews.filter((r) => r.ownerReply !== null).length;
+
+    return NextResponse.json({
+      reviews: result.reviews,
+      totalCount: result.totalCount,
+      averageRating: result.averageRating,
+      repliedCount,
+      nextPageToken: result.nextPageToken,
+    });
+  } catch (err) {
+    console.error("Google reviews fetch failed:", err instanceof Error ? err.message : err);
+    return NextResponse.json({ error: "Failed to fetch reviews" }, { status: 502 });
+  }
 }

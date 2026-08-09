@@ -198,3 +198,38 @@ export async function fetchReviews(
     nextPageToken: data.nextPageToken ?? null,
   };
 }
+
+export async function replyToReview(
+  accessToken: string,
+  reviewName: string,
+  comment: string,
+): Promise<void> {
+  const res = await fetch(`${REVIEWS_API}/${reviewName}/reply`, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ comment }),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Reply failed: ${res.status} ${err}`);
+  }
+}
+
+const REVOKE_URL = "https://oauth2.googleapis.com/revoke";
+
+export async function revokeToken(token: string): Promise<void> {
+  const res = await fetch(REVOKE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ token }),
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Token revoke failed: ${res.status} ${err}`);
+  }
+}

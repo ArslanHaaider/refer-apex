@@ -1,8 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import { Star, CornerDownRight } from "lucide-react";
 import type { GoogleReview } from "@/lib/reviews/types";
 
 type ReviewCardProps = {
   review: GoogleReview;
+  onReply?: (reviewId: string, comment: string) => Promise<void>;
 };
 
 function StarRow({ rating }: { rating: number }) {
@@ -68,7 +72,23 @@ function timeAgo(isoString: string): string {
   return `${Math.floor(months / 12)}y ago`;
 }
 
-export function ReviewCard({ review }: ReviewCardProps) {
+export function ReviewCard({ review, onReply }: ReviewCardProps) {
+  const [replying, setReplying] = useState(false);
+  const [comment, setComment] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleSubmit() {
+    if (!onReply || !comment.trim()) return;
+    setSubmitting(true);
+    try {
+      await onReply(review.id, comment.trim());
+      setReplying(false);
+      setComment("");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
     <article className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
       <div className="flex items-start gap-3">
@@ -106,6 +126,46 @@ export function ReviewCard({ review }: ReviewCardProps) {
             </p>
           </div>
         </div>
+      ) : onReply ? (
+        replying ? (
+          <div className="mt-4 space-y-2">
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              rows={2}
+              placeholder="Write a reply…"
+              className="w-full rounded-xl border border-gray-200 p-3 text-sm text-charcoal focus:border-emerald focus:outline-none"
+            />
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={submitting || !comment.trim()}
+                className="inline-flex h-9 items-center justify-center rounded-lg bg-emerald px-4 text-xs font-semibold text-white disabled:opacity-60"
+              >
+                {submitting ? "Sending…" : "Send reply"}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setReplying(false);
+                  setComment("");
+                }}
+                className="inline-flex h-9 items-center justify-center rounded-lg border border-gray-200 px-4 text-xs font-semibold text-gray-600"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setReplying(true)}
+            className="mt-3 text-xs font-semibold text-emerald hover:underline"
+          >
+            Reply
+          </button>
+        )
       ) : null}
     </article>
   );

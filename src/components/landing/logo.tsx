@@ -27,10 +27,8 @@ export function Logo({ className = "", href = "/" }: LogoProps) {
         </svg>
       </span>
       <span className="text-xl font-bold tracking-tight text-charcoal">
-        Iqr
-        <span className="bg-gradient-to-r from-emerald to-emerald-dark bg-clip-text text-transparent">
-          ava
-        </span>
+        Iq
+        <span className="text-emerald">rava</span>
       </span>
     </Link>
   );

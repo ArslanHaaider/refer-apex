@@ -42,13 +42,13 @@ export const DASHBOARD_NAV: NavItem[] = [
     href: "/dashboard/campaigns",
     label: "Campaigns",
     icon: Megaphone,
-    roles: ["admin"],
+    roles: ["admin", "user"],
   },
   {
     href: "/dashboard/contacts",
     label: "Contacts",
     icon: Users,
-    roles: ["admin"],
+    roles: ["admin", "user"],
   },
   {
     href: "/dashboard/analytics",

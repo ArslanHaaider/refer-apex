@@ -1,10 +1,7 @@
-import { PlaceholderPage } from "@/components/dashboard/placeholder-page";
+import { ReferralsShell } from "@/components/dashboard/referrals/referrals-shell";
+import { requireUser } from "@/lib/auth/get-user";
 
-export default function ReferralsPage() {
-  return (
-    <PlaceholderPage
-      title="Referrals"
-      description="See who referred new clients and how your referral campaigns are performing."
-    />
-  );
+export default async function ReferralsPage() {
+  await requireUser();
+  return <ReferralsShell />;
 }

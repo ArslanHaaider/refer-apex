@@ -65,7 +65,7 @@ export function Sidebar({ user }: SidebarProps) {
         <Menu className="h-5 w-5" />
       </button>
 
-      <aside className="hidden w-60 shrink-0 flex-col border-r border-gray-200 bg-white lg:flex">
+      <aside className="hidden w-60 flex-col border-r border-gray-200 bg-white lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex">
         {navContent}
       </aside>
 

@@ -1,6 +1,5 @@
 /**
  * Messaging adapters for referral campaigns.
- * - WhatsApp: Meta Cloud API (per-client credentials)
  * - Email: Resend HTTP API (or mock log when unset)
  */
 
@@ -10,51 +9,6 @@ export type SendResult =
 
 function isMockMessaging(): boolean {
   return process.env.MESSAGING_MOCK !== "false";
-}
-
-export async function sendWhatsAppMessage(input: {
-  phoneNumberId: string;
-  accessToken: string;
-  toPhone: string;
-  body: string;
-}): Promise<SendResult> {
-  if (isMockMessaging()) {
-    console.info("[mock-whatsapp]", {
-      to: input.toPhone,
-      phoneNumberId: input.phoneNumberId,
-      body: input.body.slice(0, 120),
-    });
-    return { ok: true, providerId: `mock-wa-${crypto.randomUUID()}` };
-  }
-
-  const to = input.toPhone.replace(/^\+/, "");
-  const res = await fetch(
-    `https://graph.facebook.com/v21.0/${input.phoneNumberId}/messages`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${input.accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        messaging_product: "whatsapp",
-        to,
-        type: "text",
-        text: { body: input.body },
-      }),
-    },
-  );
-
-  if (!res.ok) {
-    const errText = await res.text();
-    const retryable = res.status === 429 || res.status >= 500;
-    return { ok: false, error: `WhatsApp send failed: ${res.status} ${errText}`, retryable };
-  }
-
-  const data = await res.json();
-  const providerId =
-    data?.messages?.[0]?.id ?? `wa-${Date.now()}`;
-  return { ok: true, providerId };
 }
 
 export async function sendEmailMessage(input: {

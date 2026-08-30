@@ -9,7 +9,6 @@ import type {
   ColumnMapping,
   DiscountType,
   SheetConnectionStatus,
-  WhatsappConnectionStatus,
 } from "@/lib/referrals/types";
 import { extractSpreadsheetIdFromInput } from "@/lib/referrals/spreadsheet-id";
 import { getEligibilityDays } from "@/lib/referrals/eligibility";
@@ -55,7 +54,7 @@ export function CampaignWizard() {
   const [mappingSaved, setMappingSaved] = useState(false);
 
   const [name, setName] = useState("Referral Campaign");
-  const [channelMode, setChannelMode] = useState<ChannelMode>("both");
+  const [channelMode, setChannelMode] = useState<ChannelMode>("email");
   const [messageTemplate, setMessageTemplate] = useState(
     "Hi {{first_name}}! Enjoyed your visit? Refer a friend and they get {{discount}}. Share your link: {{referral_link}}",
   );
@@ -63,7 +62,6 @@ export function CampaignWizard() {
   const [discountType, setDiscountType] = useState<DiscountType>("percent");
   const [discountValue, setDiscountValue] = useState(15);
   const [discountDescription, setDiscountDescription] = useState("on your next visit");
-  const [whatsappStatus, setWhatsappStatus] = useState<WhatsappConnectionStatus | null>(null);
 
   const loadData = useCallback(async (options?: { silent?: boolean }) => {
     if (!options?.silent) {
@@ -71,15 +69,13 @@ export function CampaignWizard() {
     }
     setError(null);
     try {
-      const [statusRes, contactsRes, whatsappRes] = await Promise.all([
+      const [statusRes, contactsRes] = await Promise.all([
         fetch("/api/sheets/status").then((r) => r.json()),
         fetch("/api/contacts").then((r) => r.json()),
-        fetch("/api/whatsapp/status").then((r) => r.json()),
       ]);
 
       setStatus(statusRes);
       setEligibleCount(contactsRes.eligibleCount ?? 0);
-      setWhatsappStatus(whatsappRes);
 
       if (statusRes.connected) {
         setSelectedSpreadsheetId((current) => statusRes.spreadsheetId || current);
@@ -274,8 +270,7 @@ export function CampaignWizard() {
       selectedSheetName,
   );
   const offerReady = Boolean(name.trim() && messageTemplate.trim() && emailSubject.trim());
-  const channelsReady =
-    channelMode === "email" || Boolean(whatsappStatus?.connected);
+  const channelsReady = channelMode === "email";
 
   const canContinue = [audienceReady, offerReady, channelsReady, true][step];
 
@@ -438,8 +433,6 @@ export function CampaignWizard() {
             <StepChannels
               channelMode={channelMode}
               onChannelModeChange={setChannelMode}
-              whatsappConnected={Boolean(whatsappStatus?.connected)}
-              whatsappDisplayPhoneNumber={whatsappStatus?.displayPhoneNumber ?? null}
             />
           ) : null}
 

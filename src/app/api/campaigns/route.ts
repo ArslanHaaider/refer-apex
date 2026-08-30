@@ -85,8 +85,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "name is required" }, { status: 400 });
   }
 
-  const channelMode = body.channelMode ?? "both";
-  if (!["email", "whatsapp", "both"].includes(channelMode)) {
+  const channelMode = body.channelMode ?? "email";
+  if (!["email"].includes(channelMode)) {
     return NextResponse.json({ error: "Invalid channelMode" }, { status: 400 });
   }
 

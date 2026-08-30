@@ -1,18 +1,14 @@
 "use client";
 
-import { AlertCircle, Mail, MessageCircle, Rocket, Save, Send, Sparkles } from "lucide-react";
+import { AlertCircle, Mail, Rocket, Save, Send } from "lucide-react";
 import type { ChannelMode, DiscountType } from "@/lib/referrals/types";
 
 const CHANNEL_ICON: Record<ChannelMode, typeof Mail> = {
   email: Mail,
-  whatsapp: MessageCircle,
-  both: Sparkles,
 };
 
 const CHANNEL_LABEL: Record<ChannelMode, string> = {
   email: "Email only",
-  whatsapp: "WhatsApp only",
-  both: "Email + WhatsApp",
 };
 
 type StepReviewProps = {
@@ -69,8 +65,7 @@ export function StepReview({
       </div>
 
       <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
-        Activating checks that your Google Sheet is connected and mapped, and that WhatsApp
-        credentials are set if your channel includes WhatsApp.
+        Activating checks that your Google Sheet is connected and mapped.
       </div>
 
       {error ? (

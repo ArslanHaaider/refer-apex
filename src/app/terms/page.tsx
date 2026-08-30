@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Terms governing use of Iqrava, including accounts, messaging, Google and Meta integrations, and acceptable use.",
 };
 
-const LAST_UPDATED = "August 17, 2026";
+const LAST_UPDATED = "August 29, 2026";
 const CONTACT_EMAIL = "support@iqrava.com";
 const BUSINESS_NAME = "Iqrava";
 
@@ -56,9 +56,8 @@ export default function TermsPage() {
               <p className="mt-2">
                 {BUSINESS_NAME} provides tools that help businesses collect
                 reviews, sync client contacts, run referral campaigns, and send
-                messages by email and WhatsApp. Features may depend on
-                third-party platforms you choose to connect, including Google
-                and Meta.
+                messages by email and SMS. Features may depend on
+                third-party platforms you choose to connect, including Google.
               </p>
               <p className="mt-2">
                 We may modify, suspend, or discontinue features with reasonable
@@ -154,46 +153,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                6. WhatsApp / Meta integrations
-              </h2>
-              <p className="mt-2">
-                If you connect WhatsApp Business through Meta Embedded Signup,
-                you authorize {BUSINESS_NAME} to store connection credentials
-                and to send WhatsApp messages on your behalf through Meta&apos;s
-                Cloud API as configured in your campaigns.
-              </p>
-              <p className="mt-2">You agree that:</p>
-              <ul className="mt-2 list-disc space-y-2 pl-5">
-                <li>
-                  You will comply with Meta&apos;s WhatsApp Business terms,
-                  Commerce Policy, messaging policies, and any template/approval
-                  requirements
-                </li>
-                <li>
-                  You will only message recipients who can lawfully be contacted
-                  and who have provided any required consent
-                </li>
-                <li>
-                  You are responsible for message content, timing, frequency,
-                  and recipient lists
-                </li>
-                <li>
-                  You can disconnect WhatsApp at any time from dashboard
-                  Settings
-                </li>
-              </ul>
-              <p className="mt-2">
-                Meta may suspend or restrict WhatsApp access for policy
-                violations or other reasons outside our control.{" "}
-                {BUSINESS_NAME} is not responsible for Meta account bans,
-                template rejections, delivery failures, or related third-party
-                enforcement actions.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-lg font-semibold text-charcoal">
-                7. Acceptable use
+                6. Acceptable use
               </h2>
               <p className="mt-2">You agree not to:</p>
               <ul className="mt-2 list-disc space-y-2 pl-5">
@@ -219,14 +179,14 @@ export default function TermsPage() {
                 </li>
                 <li>
                   Misrepresent your identity, business, or affiliation with{" "}
-                  {BUSINESS_NAME}, Google, Meta, or any other party
+                  {BUSINESS_NAME}, Google, or any other party
                 </li>
               </ul>
             </section>
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                8. Fees and plans
+                7. Fees and plans
               </h2>
               <p className="mt-2">
                 Some features may be offered under free, trial, or paid plans.
@@ -239,11 +199,11 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                9. Third-party services
+                8. Third-party services
               </h2>
               <p className="mt-2">
                 The Service depends on third-party providers, including but not
-                limited to Google, Meta/WhatsApp, email delivery providers, and
+                limited to Google, email and SMS delivery providers, and
                 hosting/authentication providers. Those services are outside our
                 control. We do not warrant uninterrupted availability of any
                 feature that relies on a third-party service, and we are not
@@ -255,7 +215,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                10. Intellectual property
+                9. Intellectual property
               </h2>
               <p className="mt-2">
                 The Service, including software, design, trademarks, and
@@ -268,7 +228,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                11. Confidentiality
+                10. Confidentiality
               </h2>
               <p className="mt-2">
                 Each party may receive non-public information from the other.
@@ -280,7 +240,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                12. Termination
+                11. Termination
               </h2>
               <p className="mt-2">
                 You may stop using the Service and delete your account at any
@@ -300,7 +260,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                13. Disclaimer of warranties
+                12. Disclaimer of warranties
               </h2>
               <p className="mt-2">
                 THE SERVICE IS PROVIDED &ldquo;AS IS&rdquo; AND &ldquo;AS
@@ -316,7 +276,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                14. Limitation of liability
+                13. Limitation of liability
               </h2>
               <p className="mt-2">
                 TO THE MAXIMUM EXTENT PERMITTED BY LAW, {BUSINESS_NAME.toUpperCase()}{" "}
@@ -338,7 +298,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                15. Indemnification
+                14. Indemnification
               </h2>
               <p className="mt-2">
                 You will defend, indemnify, and hold harmless {BUSINESS_NAME}{" "}
@@ -346,7 +306,7 @@ export default function TermsPage() {
                 against claims, damages, losses, and expenses (including
                 reasonable attorneys&apos; fees) arising out of or related to:
                 your Customer Data; your messages or review replies; your use of
-                Google, Meta/WhatsApp, or other integrations; your violation of
+                Google or other integrations; your violation of
                 these Terms or applicable law; or your infringement of
                 third-party rights.
               </p>
@@ -354,7 +314,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                16. Changes to these Terms
+                15. Changes to these Terms
               </h2>
               <p className="mt-2">
                 We may update these Terms from time to time. We will update the
@@ -367,7 +327,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                17. Governing law
+                16. Governing law
               </h2>
               <p className="mt-2">
                 These Terms are governed by the laws of the United Arab Emirates,
@@ -381,7 +341,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                18. Contact
+                17. Contact
               </h2>
               <p className="mt-2">
                 Questions about these Terms can be sent to:

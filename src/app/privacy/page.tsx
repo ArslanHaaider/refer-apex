@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "How Iqrava collects, uses, shares, and protects personal data for account holders, client contacts, and messaging integrations.",
 };
 
-const LAST_UPDATED = "August 17, 2026";
+const LAST_UPDATED = "August 29, 2026";
 const CONTACT_EMAIL = "support@iqrava.com";
 const BUSINESS_NAME = "Iqrava";
 
@@ -35,7 +35,7 @@ export default function PrivacyPage() {
                 {BUSINESS_NAME} (&ldquo;{BUSINESS_NAME}&rdquo;, &ldquo;we&rdquo;,
                 &ldquo;us&rdquo;, or &ldquo;our&rdquo;) provides a growth
                 platform for service businesses that helps collect reviews, run
-                referral campaigns, and message clients by email and WhatsApp.
+                referral campaigns, and message clients by email and SMS.
                 This Privacy Policy explains what personal data we collect, why
                 we collect it, how we use and share it, how long we keep it, and
                 the rights available to you.
@@ -119,47 +119,17 @@ export default function PrivacyPage() {
               </p>
 
               <h3 className="mt-4 font-semibold text-charcoal">
-                3.4 WhatsApp / Meta connection and messaging data
+                3.4 Email and SMS messaging data
               </h3>
               <p className="mt-2">
-                If you connect WhatsApp Business via Meta Embedded Signup, we
-                may store:
-              </p>
-              <ul className="mt-2 list-disc space-y-2 pl-5">
-                <li>
-                  WhatsApp Business Account identifiers (for example WABA ID)
-                </li>
-                <li>
-                  Phone number ID, display phone number, and verified business
-                  name
-                </li>
-                <li>
-                  Encrypted Meta access tokens and token expiry metadata
-                </li>
-                <li>
-                  Message content you instruct us to send, recipient phone
-                  numbers, delivery/status events received from Meta webhooks,
-                  and related campaign metadata
-                </li>
-              </ul>
-              <p className="mt-2">
-                We use Meta&apos;s WhatsApp Cloud API only to send messages you
-                initiate through the Service and to process webhook events needed
-                to operate messaging features. We do not sell WhatsApp message
-                content or use it for unrelated advertising.
+                When you send email or SMS campaigns through the Service, we
+                process recipient email addresses or phone numbers, message
+                subject/body content, and delivery metadata needed to send and
+                track those messages.
               </p>
 
               <h3 className="mt-4 font-semibold text-charcoal">
-                3.5 Email messaging data
-              </h3>
-              <p className="mt-2">
-                When you send email campaigns through the Service, we process
-                recipient email addresses, message subject/body content, and
-                delivery metadata needed to send and track those messages.
-              </p>
-
-              <h3 className="mt-4 font-semibold text-charcoal">
-                3.6 Referral and campaign data
+                3.5 Referral and campaign data
               </h3>
               <ul className="mt-2 list-disc space-y-2 pl-5">
                 <li>Campaign configuration and message templates</li>
@@ -174,7 +144,7 @@ export default function PrivacyPage() {
               </ul>
 
               <h3 className="mt-4 font-semibold text-charcoal">
-                3.7 Technical and usage data
+                3.6 Technical and usage data
               </h3>
               <ul className="mt-2 list-disc space-y-2 pl-5">
                 <li>
@@ -201,7 +171,7 @@ export default function PrivacyPage() {
                 <li>Create and secure accounts, and authenticate users</li>
                 <li>
                   Connect and operate third-party integrations you enable
-                  (Google Business Profile, Google Sheets, WhatsApp/Meta, email
+                  (Google Business Profile, Google Sheets, email and SMS
                   delivery)
                 </li>
                 <li>
@@ -224,7 +194,7 @@ export default function PrivacyPage() {
               </ul>
               <p className="mt-2">
                 We do not sell personal data. We do not use Google user data or
-                WhatsApp message content for advertising unrelated to providing
+                campaign message content for advertising unrelated to providing
                 the Service you requested.
               </p>
             </section>
@@ -236,7 +206,7 @@ export default function PrivacyPage() {
               <p className="mt-2">
                 Depending on your location, we process personal data based on
                 one or more of the following: performance of a contract with
-                you; your consent (for example, connecting Google or WhatsApp);
+                you; your consent (for example, connecting Google);
                 our legitimate interests in operating and securing the Service;
                 and compliance with legal obligations. Account holders are
                 responsible for having a lawful basis to upload or message their
@@ -261,12 +231,8 @@ export default function PrivacyPage() {
                   Google Sheets API for features you connect
                 </li>
                 <li>
-                  <strong>Meta (WhatsApp):</strong> WhatsApp Cloud API and
-                  Embedded Signup for messaging features you connect
-                </li>
-                <li>
-                  <strong>Email delivery providers</strong> (such as Resend): to
-                  send campaign emails you initiate
+                  <strong>Email and SMS delivery providers</strong> (such as
+                  Resend): to send campaign messages you initiate
                 </li>
                 <li>
                   <strong>Service providers</strong> that help us host, monitor,
@@ -316,30 +282,14 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                8. Meta / WhatsApp data practices
-              </h2>
-              <p className="mt-2">
-                When you connect WhatsApp Business through Meta, you authorize{" "}
-                {BUSINESS_NAME} to use Meta APIs to manage your WhatsApp
-                Business connection and send messages on your behalf. Message
-                content and recipient phone numbers are processed solely to
-                deliver campaigns and related product functionality you
-                configure. You are responsible for complying with Meta&apos;s
-                WhatsApp Business terms, messaging policies, and applicable
-                consent/opt-out rules for your recipients.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-lg font-semibold text-charcoal">
-                9. Data retention
+                8. Data retention
               </h2>
               <ul className="mt-2 list-disc space-y-2 pl-5">
                 <li>
                   Account data is retained while your account remains active
                 </li>
                 <li>
-                  Google and WhatsApp OAuth/access tokens are retained until you
+                  Google OAuth/access tokens are retained until you
                   disconnect the integration or delete your account
                 </li>
                 <li>
@@ -363,13 +313,13 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                10. Your rights and choices
+                9. Your rights and choices
               </h2>
               <p className="mt-2">Depending on applicable law, you may:</p>
               <ul className="mt-2 list-disc space-y-2 pl-5">
                 <li>Access, correct, or update account information</li>
                 <li>
-                  Disconnect Google Business Profile, Google Sheets, or WhatsApp
+                  Disconnect Google Business Profile or Google Sheets
                   from dashboard Settings
                 </li>
                 <li>
@@ -402,7 +352,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                11. Security
+                10. Security
               </h2>
               <p className="mt-2">
                 We use administrative, technical, and organizational measures
@@ -416,7 +366,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                12. International transfers
+                11. International transfers
               </h2>
               <p className="mt-2">
                 We may process and store information in countries other than
@@ -428,7 +378,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                13. Children&apos;s privacy
+                12. Children&apos;s privacy
               </h2>
               <p className="mt-2">
                 The Service is intended for business use and is not directed to
@@ -441,7 +391,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                14. Changes to this policy
+                13. Changes to this policy
               </h2>
               <p className="mt-2">
                 We may update this Privacy Policy from time to time. We will
@@ -454,7 +404,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2 className="text-lg font-semibold text-charcoal">
-                15. Contact us
+                14. Contact us
               </h2>
               <p className="mt-2">
                 For privacy questions, data requests, or complaints, contact:

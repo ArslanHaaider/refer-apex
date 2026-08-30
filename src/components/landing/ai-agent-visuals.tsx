@@ -215,7 +215,7 @@ function ScoutVisual({ agent, active }: VisualProps) {
         })}
 
         <div className="flex flex-wrap gap-2 pt-1">
-          {["SMS", "WhatsApp", "Email"].map((channel) => (
+          {["SMS", "Email"].map((channel) => (
             <span
               key={channel}
               className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-500 ${

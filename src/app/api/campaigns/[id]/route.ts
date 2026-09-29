@@ -83,7 +83,7 @@ export async function PATCH(request: Request, context: RouteContext) {
   }
   if (
     typeof body.channelMode === "string" &&
-    ["email"].includes(body.channelMode)
+    ["email", "sms", "both"].includes(body.channelMode)
   ) {
     updates.channel_mode = body.channelMode;
   }

@@ -1,7 +1,7 @@
 import type { createClient } from "@/utils/supabase/server";
 import type { createAdminClient } from "@/utils/supabase/admin";
 import { writeReferralEvent } from "./events";
-import { backoffMs, renderTemplate, sendEmailMessage } from "./messaging";
+import { backoffMs, renderTemplate, sendEmailMessage, sendSmsMessage } from "./messaging";
 import type { ChannelMode } from "./types";
 
 type AnySupabase =
@@ -18,8 +18,10 @@ function appBaseUrl(): string {
   );
 }
 
-function channelsForMode(mode: ChannelMode): Array<"email"> {
-  return mode === "email" ? ["email"] : [];
+function channelsForMode(mode: ChannelMode): Array<"email" | "sms"> {
+  if (mode === "both") return ["email", "sms"];
+  if (mode === "sms") return ["sms"];
+  return ["email"];
 }
 
 export async function enqueueCampaignSends(
@@ -58,6 +60,7 @@ export async function enqueueCampaignSends(
   for (const contact of contacts ?? []) {
     for (const channel of channels) {
       if (channel === "email" && !contact.email) continue;
+      if (channel === "sms" && !contact.phone) continue;
 
       const token = crypto.randomUUID().replace(/-/g, "");
       const { error } = await supabase.from("referral_requests").upsert(
@@ -150,11 +153,17 @@ export async function processQueuedRequests(
       referral_link: referralLink,
     });
 
-    const result = await sendEmailMessage({
-      toEmail: contact.email,
-      subject: campaign.email_subject || "Refer a friend",
-      body,
-    });
+    const result =
+      request.channel === "sms"
+        ? await sendSmsMessage({
+            toPhone: contact.phone,
+            body,
+          })
+        : await sendEmailMessage({
+            toEmail: contact.email,
+            subject: campaign.email_subject || "Refer a friend",
+            body,
+          });
 
     if (result.ok) {
       await supabase

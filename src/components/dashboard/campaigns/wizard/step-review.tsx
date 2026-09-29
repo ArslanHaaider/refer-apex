@@ -1,14 +1,18 @@
 "use client";
 
-import { AlertCircle, Mail, Rocket, Save, Send } from "lucide-react";
+import { AlertCircle, Mail, MessageSquare, Rocket, Save, Send } from "lucide-react";
 import type { ChannelMode, DiscountType } from "@/lib/referrals/types";
 
 const CHANNEL_ICON: Record<ChannelMode, typeof Mail> = {
   email: Mail,
+  sms: MessageSquare,
+  both: Send,
 };
 
 const CHANNEL_LABEL: Record<ChannelMode, string> = {
   email: "Email only",
+  sms: "SMS only",
+  both: "Email + SMS",
 };
 
 type StepReviewProps = {

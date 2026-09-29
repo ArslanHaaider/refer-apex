@@ -1,4 +1,4 @@
-export type ChannelMode = "email";
+export type ChannelMode = "email" | "sms" | "both";
 export type CampaignStatus = "draft" | "active" | "paused" | "archived";
 export type DiscountType = "percent" | "fixed";
 export type RequestStatus =
@@ -85,7 +85,7 @@ export type ReferralRequestRow = {
   contactName: string;
   contactEmail: string;
   contactPhone: string;
-  channel: "email";
+  channel: "email" | "sms";
   status: RequestStatus;
   sentAt: string | null;
   clickedAt: string | null;

@@ -86,7 +86,7 @@ export async function POST(request: Request) {
   }
 
   const channelMode = body.channelMode ?? "email";
-  if (!["email"].includes(channelMode)) {
+  if (!["email", "sms", "both"].includes(channelMode)) {
     return NextResponse.json({ error: "Invalid channelMode" }, { status: 400 });
   }
 

@@ -232,7 +232,7 @@ export default function PrivacyPage() {
                 </li>
                 <li>
                   <strong>Email and SMS delivery providers</strong> (such as
-                  Resend): to send campaign messages you initiate
+                  Resend and ClickSend): to send campaign messages you initiate
                 </li>
                 <li>
                   <strong>Service providers</strong> that help us host, monitor,

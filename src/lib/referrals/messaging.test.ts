@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { backoffMs, renderTemplate, sendEmailMessage } from "./messaging";
+import { backoffMs, renderTemplate, sendEmailMessage, sendSmsMessage } from "./messaging";
 
 describe("messaging", () => {
   it("renders template variables", () => {
@@ -31,5 +31,15 @@ describe("messaging", () => {
       body: "Body",
     });
     assert.equal(email.ok, true);
+  });
+
+  it("mock sms sends succeed", async () => {
+    process.env.MESSAGING_MOCK = "true";
+
+    const sms = await sendSmsMessage({
+      toPhone: "+15555551234",
+      body: "Body",
+    });
+    assert.equal(sms.ok, true);
   });
 });

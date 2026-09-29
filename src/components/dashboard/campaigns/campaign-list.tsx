@@ -1,11 +1,13 @@
 "use client";
 
-import { Mail, Megaphone, Pause, Play, Send } from "lucide-react";
+import { Mail, Megaphone, MessageSquare, Pause, Play, Send } from "lucide-react";
 import type { ChannelMode, ReferralCampaign } from "@/lib/referrals/types";
 import { StatusBadge } from "./status-badge";
 
 const CHANNEL_ICON: Record<ChannelMode, typeof Mail> = {
   email: Mail,
+  sms: MessageSquare,
+  both: Send,
 };
 
 type CampaignListProps = {

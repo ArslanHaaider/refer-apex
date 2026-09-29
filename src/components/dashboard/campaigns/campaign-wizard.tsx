@@ -270,7 +270,7 @@ export function CampaignWizard() {
       selectedSheetName,
   );
   const offerReady = Boolean(name.trim() && messageTemplate.trim() && emailSubject.trim());
-  const channelsReady = channelMode === "email";
+  const channelsReady = ["email", "sms", "both"].includes(channelMode);
 
   const canContinue = [audienceReady, offerReady, channelsReady, true][step];
 

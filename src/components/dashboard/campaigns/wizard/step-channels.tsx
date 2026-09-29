@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail } from "lucide-react";
+import { Mail, MessageSquare, Send } from "lucide-react";
 import type { ChannelMode } from "@/lib/referrals/types";
 
 type StepChannelsProps = {
@@ -10,6 +10,8 @@ type StepChannelsProps = {
 
 const CHANNEL_OPTIONS: Array<{ value: ChannelMode; label: string; hint: string; icon: typeof Mail }> = [
   { value: "email", label: "Email", hint: "Send via email only", icon: Mail },
+  { value: "sms", label: "SMS", hint: "Send via text message only", icon: MessageSquare },
+  { value: "both", label: "Email + SMS", hint: "Send via both channels", icon: Send },
 ];
 
 export function StepChannels({

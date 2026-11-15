@@ -20,11 +20,11 @@ export function Sidebar({ user }: SidebarProps) {
 
   const navContent = (
     <>
-      <div className="px-5 py-6">
+      <div className="px-5 pb-6 pt-6">
         <Logo href="/dashboard" />
       </div>
 
-      <nav className="flex-1 space-y-1 px-3" aria-label="Dashboard">
+      <nav className="flex-1 space-y-1 px-3.5" aria-label="Dashboard">
         {navItems.map((item) => {
           const isActive =
             item.href === "/dashboard"
@@ -37,7 +37,7 @@ export function Sidebar({ user }: SidebarProps) {
               key={item.href}
               href={item.href}
               onClick={() => setMobileOpen(false)}
-              className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-3 h-[38px] rounded-[9px] px-3 text-sm font-medium transition-colors ${
                 isActive
                   ? "bg-emerald text-white shadow-sm shadow-emerald/30"
                   : "text-gray-600 hover:bg-gray-100 hover:text-charcoal"
@@ -65,7 +65,7 @@ export function Sidebar({ user }: SidebarProps) {
         <Menu className="h-5 w-5" />
       </button>
 
-      <aside className="hidden w-60 flex-col border-r border-gray-200 bg-white/90 backdrop-blur lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex">
+      <aside className="hidden w-60 flex-col border-r border-gray-200 bg-gray-50 lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex">
         {navContent}
       </aside>
 

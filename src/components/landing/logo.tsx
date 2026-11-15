@@ -16,14 +16,12 @@ export function Logo({ className = "", href = "/" }: LogoProps) {
           aria-hidden="true"
         >
           <path
-            d="M4 15c4-8 12-8 16 0"
+            d="m6 15 6-6 6 6"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="2.6"
             strokeLinecap="round"
+            strokeLinejoin="round"
           />
-          <circle cx="4" cy="15" r="1.6" fill="currentColor" />
-          <circle cx="20" cy="15" r="1.6" fill="currentColor" />
-          <circle cx="12" cy="7" r="1.6" fill="currentColor" />
         </svg>
       </span>
       <span className="font-display text-2xl font-semibold tracking-tight text-charcoal">

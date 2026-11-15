@@ -18,7 +18,7 @@
   /* warm stone neutrals replace the cool default grays */
   --color-gray-50: #faf7f1;
   --color-gray-100: #f1ece1;
-  --color-gray-200: #e4ddcf;
+  --color-gray-200: #d6ccb8;
   --color-gray-300: #cfc7b5;
   --color-gray-400: #a39b8a;
   --color-gray-500: #6f6a5e;
@@ -231,4 +231,110 @@ body {
   font-weight: 300;
   font-variant-numeric: lining-nums tabular-nums;
   letter-spacing: -0.03em;
+}
+
+/* chart + bar entrance animations */
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.chart-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-line 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+.chart-fade {
+  opacity: 0;
+  animation: fade-in 0.8s ease-out var(--d, 0.9s) forwards;
+}
+.grow-x {
+  transform-origin: left center;
+  animation: grow-x var(--dur, 1s) cubic-bezier(0.25, 1, 0.5, 1) var(--d, 0ms) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .chart-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .chart-fade {
+    animation: none;
+    opacity: 1;
+  }
+  .grow-x {
+    animation: none;
+  }
+}
+
+/* rating distribution: ambient motion once the bars have landed */
+@keyframes bar-sheen {
+  0%,
+  55% {
+    transform: translateX(-130%);
+  }
+  100% {
+    transform: translateX(130%);
+  }
+}
+@keyframes tip-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(15, 107, 87, 0.45);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 7px rgba(15, 107, 87, 0);
+  }
+}
+.bar-fill {
+  position: relative;
+  overflow: hidden;
+}
+.bar-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+  transform: translateX(-130%);
+  animation: bar-sheen 4.5s ease-in-out calc(var(--d, 0ms) + 1.6s) infinite;
+}
+.bar-tip {
+  animation: tip-pulse 2.4s ease-out infinite;
+}
+.dist-row {
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+.dist-list:hover .dist-row:not(:hover) {
+  opacity: 0.4;
+}
+.dist-row:hover {
+  background-color: var(--color-gray-50);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bar-fill::after,
+  .bar-tip {
+    animation: none;
+  }
+}
+
+/* shared dashboard card surface */
+.card {
+  border-radius: 14px;
+  border: 1px solid var(--color-gray-200);
+  background: #fff;
+  box-shadow:
+    0 1px 2px rgba(30, 40, 35, 0.06),
+    0 6px 16px -8px rgba(30, 40, 35, 0.10);
 }

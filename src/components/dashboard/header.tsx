@@ -19,17 +19,17 @@ export function DashboardHeader({
   children,
 }: DashboardHeaderProps) {
   return (
-    <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">
+        <h1 className="text-[36px] font-normal leading-none tracking-[-0.02em] text-charcoal">
           {title}
         </h1>
         {role === "user" ? (
-          <p className="mt-1 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-500">
             Your spa&apos;s performance at a glance
           </p>
         ) : (
-          <p className="mt-1 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-500">
             Platform-wide metrics across all locations
           </p>
         )}
@@ -40,7 +40,7 @@ export function DashboardHeader({
         {dateRange ? (
           <button
             type="button"
-            className="inline-flex h-10 items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 text-sm font-medium text-charcoal transition-colors hover:bg-off-white"
+            className="inline-flex h-9 items-center gap-2 rounded-[9px] border border-gray-200 bg-white px-3.5 text-[13px] font-medium text-charcoal transition-colors hover:bg-off-white"
           >
             <Calendar className="h-4 w-4 text-gray-600" strokeWidth={1.75} />
             {dateRange}

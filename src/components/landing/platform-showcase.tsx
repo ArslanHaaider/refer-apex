@@ -43,7 +43,7 @@ export function PlatformShowcase() {
           <div className="lg:col-span-6">
             <div className="overflow-hidden rounded-2xl border border-white/20 bg-white/80 shadow-xl backdrop-blur-md">
               <Image
-                src="/images/review-preview.png"
+                src="/images/iqrava-reviews.png"
                 alt="Iqrava reviews management screen"
                 width={960}
                 height={600}

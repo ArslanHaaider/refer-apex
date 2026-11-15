@@ -98,7 +98,7 @@ function AgentBlock({ agent, index, onActive }: AgentBlockProps) {
         >
           {agent.name} &middot; {agent.role}
         </p>
-        <h3 className="mt-3 max-w-lg text-2xl font-semibold leading-snug tracking-tight text-charcoal sm:text-[28px]">
+        <h3 className="mt-3 max-w-lg text-3xl font-light leading-tight tracking-[-0.02em] text-charcoal sm:text-[28px]">
           {agent.tagline}
         </h3>
         <p className="mt-4 max-w-lg text-base leading-relaxed text-gray-600">

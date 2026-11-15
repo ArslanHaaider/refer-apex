@@ -11,7 +11,7 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200/60 bg-white/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-gray-200/70 bg-off-white/80 backdrop-blur-md">
       <Container>
         <div className="flex h-16 items-center justify-between">
           <Logo />

@@ -8,7 +8,7 @@ type LogoProps = {
 export function Logo({ className = "", href = "/" }: LogoProps) {
   return (
     <Link href={href} className={`group inline-flex items-center gap-2.5 ${className}`}>
-      <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald to-emerald-dark shadow-sm shadow-emerald/30 transition-transform duration-300 group-hover:scale-105">
+      <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] bg-emerald ring-1 ring-inset ring-white/10 shadow-sm shadow-emerald/30 transition-transform duration-300 group-hover:scale-105">
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -26,9 +26,9 @@ export function Logo({ className = "", href = "/" }: LogoProps) {
           <circle cx="12" cy="7" r="1.6" fill="currentColor" />
         </svg>
       </span>
-      <span className="text-xl font-bold tracking-tight text-charcoal">
+      <span className="font-display text-2xl font-semibold tracking-tight text-charcoal">
         Iq
-        <span className="text-emerald">rava</span>
+        <span className="text-accent">rava</span>
       </span>
     </Link>
   );

@@ -19,7 +19,7 @@ export default function TermsPage() {
       <Header />
       <main className="py-16">
         <Container className="max-w-3xl">
-          <h1 className="text-3xl font-bold tracking-tight text-charcoal">
+          <h1 className="t-num text-5xl text-charcoal">
             Terms of Service
           </h1>
           <p className="mt-2 text-sm text-gray-500">
@@ -28,7 +28,7 @@ export default function TermsPage() {
 
           <div className="mt-10 space-y-8 text-sm leading-relaxed text-gray-700">
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 1. Acceptance of these Terms
               </h2>
               <p className="mt-2">
@@ -50,7 +50,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 2. The Service
               </h2>
               <p className="mt-2">
@@ -67,7 +67,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 3. Accounts and security
               </h2>
               <p className="mt-2">
@@ -91,7 +91,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 4. Customer data and your responsibilities
               </h2>
               <p className="mt-2">
@@ -124,7 +124,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 5. Google integrations
               </h2>
               <p className="mt-2">
@@ -152,7 +152,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 6. Acceptable use
               </h2>
               <p className="mt-2">You agree not to:</p>
@@ -185,7 +185,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 7. Fees and plans
               </h2>
               <p className="mt-2">
@@ -198,7 +198,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 8. Third-party services
               </h2>
               <p className="mt-2">
@@ -214,7 +214,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 9. Intellectual property
               </h2>
               <p className="mt-2">
@@ -227,7 +227,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 10. Confidentiality
               </h2>
               <p className="mt-2">
@@ -239,7 +239,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 11. Termination
               </h2>
               <p className="mt-2">
@@ -259,7 +259,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 12. Disclaimer of warranties
               </h2>
               <p className="mt-2">
@@ -275,7 +275,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 13. Limitation of liability
               </h2>
               <p className="mt-2">
@@ -297,7 +297,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 14. Indemnification
               </h2>
               <p className="mt-2">
@@ -313,7 +313,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 15. Changes to these Terms
               </h2>
               <p className="mt-2">
@@ -326,7 +326,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 16. Governing law
               </h2>
               <p className="mt-2">
@@ -340,7 +340,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 17. Contact
               </h2>
               <p className="mt-2">

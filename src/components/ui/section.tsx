@@ -25,7 +25,7 @@ type SectionTextProps = {
 function Eyebrow({ children, className = "" }: SectionTextProps) {
   return (
     <p
-      className={`mb-3 text-sm font-medium uppercase tracking-widest text-emerald ${className}`}
+      className={`mb-3 t-label text-accent ${className}`}
     >
       {children}
     </p>
@@ -35,7 +35,7 @@ function Eyebrow({ children, className = "" }: SectionTextProps) {
 function Heading({ children, className = "" }: SectionTextProps) {
   return (
     <h2
-      className={`text-[32px] font-semibold leading-tight tracking-tight text-charcoal ${className}`}
+      className={`font-light leading-[1.05] tracking-[-0.025em] text-[40px] sm:text-[56px] text-charcoal ${className}`}
     >
       {children}
     </h2>

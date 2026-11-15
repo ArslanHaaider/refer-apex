@@ -64,7 +64,7 @@ export function Footer() {
 
           {linkColumns.map((column) => (
             <div key={column.title}>
-              <h3 className="text-xs font-semibold tracking-widest text-charcoal uppercase">
+              <h3 className="t-label text-charcoal">
                 {column.title}
               </h3>
               <ul className="mt-4 space-y-3">

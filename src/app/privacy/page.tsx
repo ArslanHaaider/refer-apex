@@ -19,7 +19,7 @@ export default function PrivacyPage() {
       <Header />
       <main className="py-16">
         <Container className="max-w-3xl">
-          <h1 className="text-3xl font-bold tracking-tight text-charcoal">
+          <h1 className="t-num text-5xl text-charcoal">
             Privacy Policy
           </h1>
           <p className="mt-2 text-sm text-gray-500">
@@ -28,7 +28,7 @@ export default function PrivacyPage() {
 
           <div className="prose-legal mt-10 space-y-8 text-sm leading-relaxed text-gray-700">
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 1. Introduction
               </h2>
               <p className="mt-2">
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 2. Who this policy covers
               </h2>
               <ul className="mt-2 list-disc space-y-2 pl-5">
@@ -73,7 +73,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 3. Information we collect
               </h2>
 
@@ -163,7 +163,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 4. How we use information
               </h2>
               <p className="mt-2">We use personal data to:</p>
@@ -200,7 +200,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 5. Legal bases (where applicable)
               </h2>
               <p className="mt-2">
@@ -215,7 +215,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 6. How we share information
               </h2>
               <p className="mt-2">
@@ -256,7 +256,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 7. Google API Services User Data Policy
               </h2>
               <p className="mt-2">
@@ -281,7 +281,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 8. Data retention
               </h2>
               <ul className="mt-2 list-disc space-y-2 pl-5">
@@ -312,7 +312,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 9. Your rights and choices
               </h2>
               <p className="mt-2">Depending on applicable law, you may:</p>
@@ -351,7 +351,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 10. Security
               </h2>
               <p className="mt-2">
@@ -365,7 +365,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 11. International transfers
               </h2>
               <p className="mt-2">
@@ -377,7 +377,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 12. Children&apos;s privacy
               </h2>
               <p className="mt-2">
@@ -390,7 +390,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 13. Changes to this policy
               </h2>
               <p className="mt-2">
@@ -403,7 +403,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-charcoal">
+              <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
                 14. Contact us
               </h2>
               <p className="mt-2">

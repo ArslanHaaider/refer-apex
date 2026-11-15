@@ -30,7 +30,7 @@ export function BusinessSelector({
   return (
     <div>
       <div className="mb-6 flex flex-col gap-1">
-        <h2 className="text-lg font-semibold text-charcoal">
+        <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">
           Select a business location
         </h2>
         <p className="text-sm text-gray-600">

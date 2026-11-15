@@ -21,7 +21,7 @@ type CampaignListProps = {
 export function CampaignList({ campaigns, busy, onActivate, onPause, onDispatch }: CampaignListProps) {
   return (
     <section className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-      <h2 className="text-lg font-semibold text-charcoal">Your campaigns</h2>
+      <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">Your campaigns</h2>
 
       {campaigns.length === 0 ? (
         <div className="mt-6 flex flex-col items-center justify-center rounded-xl border border-dashed border-gray-200 py-12 text-center">

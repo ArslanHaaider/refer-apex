@@ -78,7 +78,7 @@ export function ProblemStatement() {
           <aside className="lg:sticky lg:top-24 lg:self-start">
             <div className="rounded-3xl border border-emerald-700 bg-emerald px-6 py-7 shadow-[0_24px_70px_-34px_rgba(6,95,70,0.6)] sm:px-8 sm:py-9">
               <Section.Eyebrow className="mb-3 text-emerald-100">The Challenge</Section.Eyebrow>
-              <h2 className="text-[28px] font-semibold leading-tight tracking-tight sm:text-[36px]">
+              <h2 className="font-light leading-[1.05] tracking-[-0.025em] text-[34px] sm:text-[48px]">
                 <span className="text-white">Referrals are the </span>
                 <span className="text-emerald-100">highest converting leads</span>
                 <span className="text-white">.</span>
@@ -87,7 +87,7 @@ export function ProblemStatement() {
               <dl className="mt-8 space-y-5 border-t border-white/20 pt-6">
                 {PROBLEM_STATS.map((stat) => (
                   <div key={stat.label} className="flex items-start gap-4">
-                    <dt className="w-16 shrink-0 text-2xl font-bold tracking-tight text-white">
+                    <dt className="w-16 shrink-0 text-4xl font-light tracking-[-0.025em] text-white">
                       {stat.value}
                     </dt>
                     <dd className="text-sm leading-relaxed text-emerald-50">{stat.label}</dd>

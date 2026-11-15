@@ -70,7 +70,7 @@ export function ReferralsShell() {
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-charcoal">Referrals</h1>
+          <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">Referrals</h1>
           <p className="mt-1 text-sm text-gray-600">
             Track sends, clicks, submissions, bookings, and rewards.
           </p>
@@ -108,7 +108,7 @@ export function ReferralsShell() {
       </section>
 
       <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-charcoal">Referral leads</h2>
+        <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">Referral leads</h2>
         {leads.length === 0 ? (
           <p className="mt-3 text-sm text-gray-500">No referral leads yet.</p>
         ) : (
@@ -149,7 +149,7 @@ export function ReferralsShell() {
       </section>
 
       <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-charcoal">Outbound requests</h2>
+        <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">Outbound requests</h2>
         {requests.length === 0 ? (
           <p className="mt-3 text-sm text-gray-500">No outbound referral requests yet.</p>
         ) : (
@@ -194,7 +194,7 @@ function FunnelCard({ label, value }: { label: string; value: number }) {
   return (
     <article className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
       <p className="text-xs font-medium text-gray-500">{label}</p>
-      <p className="mt-2 text-2xl font-bold tracking-tight text-charcoal">{value}</p>
+      <p className="mt-2 text-4xl font-light tracking-[-0.025em] text-charcoal">{value}</p>
     </article>
   );
 }

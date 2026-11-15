@@ -370,7 +370,7 @@ export function CampaignWizard() {
     <div className="mx-auto max-w-3xl space-y-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-charcoal">New campaign</h1>
+          <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">New campaign</h1>
           <p className="mt-1 text-sm text-gray-600">
             {STEPS[step].description}
           </p>

@@ -13,7 +13,7 @@ export function PlaceholderPage({
 }: PlaceholderPageProps) {
   return (
     <div>
-      <h1 className="text-2xl font-bold tracking-tight text-charcoal">
+      <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">
         {title}
       </h1>
       <p className="mt-2 max-w-xl text-sm text-gray-600">{description}</p>

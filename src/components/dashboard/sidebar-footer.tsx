@@ -19,7 +19,7 @@ export function SidebarFooter({ user }: SidebarFooterProps) {
           {displayName}
         </p>
         <p className="truncate text-xs text-gray-600">{user.email}</p>
-        <span className="mt-1.5 inline-flex rounded-md bg-emerald/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-emerald">
+        <span className="mt-1.5 inline-flex rounded-md bg-emerald/10 px-2 py-0.5 t-label text-[10px] text-emerald">
           {roleLabel}
         </span>
       </div>

@@ -39,7 +39,7 @@ export function ReviewsHeader({
   return (
     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-bold tracking-tight text-charcoal">
+        <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">
           Reviews
         </h1>
         <p className="text-sm text-gray-600">

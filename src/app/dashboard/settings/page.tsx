@@ -7,7 +7,7 @@ export default async function SettingsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold tracking-tight text-charcoal">
+      <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">
         Settings
       </h1>
       <p className="mt-2 max-w-xl text-sm text-gray-600">

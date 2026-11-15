@@ -54,7 +54,7 @@ export function PlatformShowcase() {
 
           <div className="lg:col-span-3">
             <div className="rounded-2xl border border-gray-200/60 bg-white/80 p-6 shadow-lg backdrop-blur-md">
-              <h3 className="text-lg font-semibold text-charcoal">Client Timeline</h3>
+              <h3 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">Client Timeline</h3>
               <p className="mt-1 text-sm text-gray-600">Sarah M. — Hydrafacial</p>
               <ol className="mt-6 space-y-0">
                 {TIMELINE_STEPS.map((step, index) => {
@@ -118,7 +118,7 @@ export function PlatformShowcase() {
                 <polyline
                   points="0,28 20,24 40,20 60,18 80,12 100,8 120,4"
                   fill="none"
-                  stroke="#10b981"
+                  stroke="#0f6b57"
                   strokeWidth="2"
                 />
               </svg>
@@ -129,7 +129,7 @@ export function PlatformShowcase() {
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-8">
               {PLATFORM_STATS.map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <p className="text-3xl font-bold text-emerald sm:text-4xl">{stat.value}</p>
+                  <p className="t-num text-5xl text-emerald sm:text-6xl">{stat.value}</p>
                   <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
                 </div>
               ))}

@@ -37,9 +37,9 @@ export function Pricing() {
                     </span>
                   ) : null}
 
-                  <h3 className="text-lg font-semibold text-charcoal">{tier.name}</h3>
+                  <h3 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">{tier.name}</h3>
                   <div className="mt-3">
-                    <p className="text-4xl font-bold text-charcoal">Custom</p>
+                    <p className="t-num text-5xl text-charcoal">Custom</p>
                   </div>
                   <p className="mt-3 text-sm text-gray-600">{tier.description}</p>
 

@@ -9,10 +9,10 @@ type DashboardShellProps = {
 
 export function DashboardShell({ user, children }: DashboardShellProps) {
   return (
-    <div className="min-h-full bg-off-white">
+    <div className="min-h-full bg-atmosphere">
       <Sidebar user={user} />
       <div className="flex min-w-0 flex-col lg:pl-60">
-        <main className="px-4 pb-8 pt-16 lg:px-8 lg:pt-8">{children}</main>
+        <main id="main-content" className="px-4 pb-8 pt-16 lg:px-8 lg:pt-8">{children}</main>
       </div>
     </div>
   );

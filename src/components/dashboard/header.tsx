@@ -21,7 +21,7 @@ export function DashboardHeader({
   return (
     <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-charcoal">
+        <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">
           {title}
         </h1>
         {role === "user" ? (

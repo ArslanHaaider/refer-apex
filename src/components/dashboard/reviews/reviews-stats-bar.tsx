@@ -74,7 +74,7 @@ export function ReviewsStatsBar({
             </span>
           </div>
           <p className="mt-3 flex items-end gap-1.5">
-            <span className="text-3xl font-bold tracking-tight text-charcoal">
+            <span className="t-num text-5xl text-charcoal">
               {stat.value}
             </span>
             {stat.label === "Average Rating" ? (

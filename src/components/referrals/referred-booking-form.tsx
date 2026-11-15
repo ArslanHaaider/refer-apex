@@ -107,7 +107,7 @@ export function ReferredBookingForm({ token }: { token: string }) {
       <p className="text-xs font-semibold uppercase tracking-wide text-emerald">
         Book your visit
       </p>
-      <h1 className="mt-2 text-2xl font-bold tracking-tight text-charcoal">
+      <h1 className="mt-2 text-4xl font-light tracking-[-0.025em] text-charcoal">
         Hi {info.leadName.split(" ")[0]}
       </h1>
       <p className="mt-2 text-sm text-gray-600">

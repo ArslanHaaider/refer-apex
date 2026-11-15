@@ -48,7 +48,7 @@ export function ReviewGrowthChart({
 
   return (
     <article className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm lg:col-span-3">
-      <h2 className="text-base font-semibold text-charcoal">Review Growth</h2>
+      <h2 className="text-xl font-normal tracking-[-0.01em] text-charcoal">Review Growth</h2>
       <div className="mt-4 overflow-x-auto">
         <svg
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
@@ -58,8 +58,8 @@ export function ReviewGrowthChart({
         >
           <defs>
             <linearGradient id="review-fill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#10b981" stopOpacity="0.28" />
-              <stop offset="100%" stopColor="#10b981" stopOpacity="0.02" />
+              <stop offset="0%" stopColor="#0f6b57" stopOpacity="0.28" />
+              <stop offset="100%" stopColor="#0f6b57" stopOpacity="0.02" />
             </linearGradient>
           </defs>
 
@@ -84,13 +84,13 @@ export function ReviewGrowthChart({
           <path
             d={linePath}
             fill="none"
-            stroke="#10b981"
+            stroke="#0f6b57"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
 
-          <circle cx={lastX} cy={lastY} r="5" fill="#10b981" />
+          <circle cx={lastX} cy={lastY} r="5" fill="#0f6b57" />
           <rect
             x={lastX - 72}
             y={lastY - 38}

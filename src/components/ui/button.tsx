@@ -15,7 +15,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald focus-visible:ring-offset-2";
+  "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-200 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
 
 function Primary({
   children,
@@ -25,7 +25,7 @@ function Primary({
 }: BaseProps & ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
-      className={`${baseClasses} bg-emerald text-white hover:bg-emerald-dark ${sizeClasses[size]} ${className}`}
+      className={`${baseClasses} bg-emerald text-white shadow-[0_1px_0_rgba(255,255,255,0.18)_inset,0_6px_16px_-6px_rgba(15,107,87,0.55)] hover:bg-emerald-dark hover:shadow-[0_8px_20px_-6px_rgba(15,107,87,0.65)] ${sizeClasses[size]} ${className}`}
       {...props}
     >
       {children}
@@ -73,7 +73,7 @@ function PrimaryLink({
 }: BaseProps & AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
     <a
-      className={`${baseClasses} bg-emerald text-white hover:bg-emerald-dark ${sizeClasses[size]} ${className}`}
+      className={`${baseClasses} bg-emerald text-white shadow-[0_1px_0_rgba(255,255,255,0.18)_inset,0_6px_16px_-6px_rgba(15,107,87,0.55)] hover:bg-emerald-dark hover:shadow-[0_8px_20px_-6px_rgba(15,107,87,0.65)] ${sizeClasses[size]} ${className}`}
       {...props}
     >
       {children}

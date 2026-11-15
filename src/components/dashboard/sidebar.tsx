@@ -39,8 +39,8 @@ export function Sidebar({ user }: SidebarProps) {
               onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                 isActive
-                  ? "bg-emerald/10 text-emerald"
-                  : "text-gray-600 hover:bg-off-white hover:text-charcoal"
+                  ? "bg-emerald text-white shadow-sm shadow-emerald/30"
+                  : "text-gray-600 hover:bg-gray-100 hover:text-charcoal"
               }`}
             >
               <Icon className="h-[18px] w-[18px] shrink-0" strokeWidth={1.75} />
@@ -65,7 +65,7 @@ export function Sidebar({ user }: SidebarProps) {
         <Menu className="h-5 w-5" />
       </button>
 
-      <aside className="hidden w-60 flex-col border-r border-gray-200 bg-white lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex">
+      <aside className="hidden w-60 flex-col border-r border-gray-200 bg-white/90 backdrop-blur lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex">
         {navContent}
       </aside>
 

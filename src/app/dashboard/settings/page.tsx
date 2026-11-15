@@ -1,5 +1,4 @@
 import { GoogleConnectionCard } from "@/components/dashboard/settings/google-connection-card";
-import { WhatsappConnectionCard } from "@/components/dashboard/settings/whatsapp-connection-card";
 import { AccountDangerZone } from "@/components/dashboard/settings/account-danger-zone";
 import { requireUser } from "@/lib/auth/get-user";
 
@@ -8,7 +7,7 @@ export default async function SettingsPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold tracking-tight text-charcoal">
+      <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">
         Settings
       </h1>
       <p className="mt-2 max-w-xl text-sm text-gray-600">
@@ -19,7 +18,6 @@ export default async function SettingsPage() {
 
       <div className="mt-8 space-y-6">
         <GoogleConnectionCard />
-        <WhatsappConnectionCard />
         <AccountDangerZone />
       </div>
     </div>

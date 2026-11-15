@@ -67,7 +67,7 @@ export function DataSourceCard({
             <Table2 className="h-5 w-5" strokeWidth={1.75} />
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-charcoal">Data source</h2>
+            <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">Data source</h2>
             <p className="mt-1 text-sm text-gray-600">
               One Google Sheet per account. Share the sheet with the trusted service-account email
               as Viewer, then verify it here.

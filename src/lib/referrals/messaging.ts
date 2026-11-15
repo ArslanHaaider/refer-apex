@@ -1,7 +1,7 @@
 /**
  * Messaging adapters for referral campaigns.
- * - WhatsApp: Meta Cloud API (per-client credentials)
  * - Email: Resend HTTP API (or mock log when unset)
+ * - SMS: ClickSend HTTP API (or mock log when unset)
  */
 
 export type SendResult =
@@ -10,51 +10,6 @@ export type SendResult =
 
 function isMockMessaging(): boolean {
   return process.env.MESSAGING_MOCK !== "false";
-}
-
-export async function sendWhatsAppMessage(input: {
-  phoneNumberId: string;
-  accessToken: string;
-  toPhone: string;
-  body: string;
-}): Promise<SendResult> {
-  if (isMockMessaging()) {
-    console.info("[mock-whatsapp]", {
-      to: input.toPhone,
-      phoneNumberId: input.phoneNumberId,
-      body: input.body.slice(0, 120),
-    });
-    return { ok: true, providerId: `mock-wa-${crypto.randomUUID()}` };
-  }
-
-  const to = input.toPhone.replace(/^\+/, "");
-  const res = await fetch(
-    `https://graph.facebook.com/v21.0/${input.phoneNumberId}/messages`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${input.accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        messaging_product: "whatsapp",
-        to,
-        type: "text",
-        text: { body: input.body },
-      }),
-    },
-  );
-
-  if (!res.ok) {
-    const errText = await res.text();
-    const retryable = res.status === 429 || res.status >= 500;
-    return { ok: false, error: `WhatsApp send failed: ${res.status} ${errText}`, retryable };
-  }
-
-  const data = await res.json();
-  const providerId =
-    data?.messages?.[0]?.id ?? `wa-${Date.now()}`;
-  return { ok: true, providerId };
 }
 
 export async function sendEmailMessage(input: {
@@ -105,6 +60,69 @@ export async function sendEmailMessage(input: {
 
   const data = await res.json();
   return { ok: true, providerId: data.id ?? `email-${Date.now()}` };
+}
+
+export async function sendSmsMessage(input: {
+  toPhone: string;
+  body: string;
+  senderId?: string;
+}): Promise<SendResult> {
+  if (isMockMessaging()) {
+    console.info("[mock-sms]", {
+      to: input.toPhone,
+      body: input.body.slice(0, 120),
+    });
+    return { ok: true, providerId: `mock-sms-${crypto.randomUUID()}` };
+  }
+
+  const username = process.env.CLICKSEND_USERNAME;
+  const apiKey = process.env.CLICKSEND_API_KEY;
+  const from = input.senderId ?? process.env.CLICKSEND_SENDER_ID;
+
+  if (!username || !apiKey) {
+    return {
+      ok: false,
+      error: "CLICKSEND_USERNAME / CLICKSEND_API_KEY is not configured",
+      retryable: false,
+    };
+  }
+
+  const res = await fetch("https://rest.clicksend.com/v3/sms/send", {
+    method: "POST",
+    headers: {
+      Authorization: `Basic ${Buffer.from(`${username}:${apiKey}`).toString("base64")}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      messages: [
+        {
+          to: input.toPhone,
+          body: input.body,
+          ...(from ? { from } : {}),
+        },
+      ],
+    }),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text();
+    const retryable = res.status === 429 || res.status >= 500;
+    return { ok: false, error: `SMS send failed: ${res.status} ${errText}`, retryable };
+  }
+
+  const data = await res.json();
+  const message = data?.data?.messages?.[0];
+  const status = String(message?.status ?? "").toUpperCase();
+
+  if (status && status !== "SUCCESS" && status !== "QUEUED") {
+    return {
+      ok: false,
+      error: `SMS send failed: ${message?.status ?? "unknown error"}`,
+      retryable: false,
+    };
+  }
+
+  return { ok: true, providerId: message?.message_id ?? `sms-${Date.now()}` };
 }
 
 export function renderTemplate(

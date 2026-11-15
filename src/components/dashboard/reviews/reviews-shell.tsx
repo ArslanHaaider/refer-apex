@@ -274,7 +274,7 @@ export function ReviewsShell() {
   if (!isConnected) {
     return (
       <>
-        <h1 className="text-2xl font-bold tracking-tight text-charcoal">
+        <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">
           Reviews
         </h1>
         <p className="mt-1 mb-8 text-sm text-gray-600">
@@ -292,7 +292,7 @@ export function ReviewsShell() {
   if (!selectedLocation) {
     return (
       <>
-        <h1 className="text-2xl font-bold tracking-tight text-charcoal">
+        <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">
           Reviews
         </h1>
         <p className="mt-1 mb-8 text-sm text-gray-600">

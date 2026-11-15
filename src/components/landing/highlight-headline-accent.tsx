@@ -51,7 +51,7 @@ export function HighlightHeadlineAccent({ className = "" }: HighlightHeadlineAcc
             {segment.prefix}
             <span
               className={[
-                isRevealed ? "highlight-reveal-word" : "text-charcoal",
+                isRevealed ? "highlight-reveal-word italic font-extralight" : "text-charcoal italic",
                 "nowrap" in segment && segment.nowrap ? "whitespace-nowrap" : "",
               ]
                 .filter(Boolean)

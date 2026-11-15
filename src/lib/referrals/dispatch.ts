@@ -1,13 +1,7 @@
 import type { createClient } from "@/utils/supabase/server";
 import type { createAdminClient } from "@/utils/supabase/admin";
-import { getValidWhatsappConnection } from "./whatsapp-connection";
 import { writeReferralEvent } from "./events";
-import {
-  backoffMs,
-  renderTemplate,
-  sendEmailMessage,
-  sendWhatsAppMessage,
-} from "./messaging";
+import { backoffMs, renderTemplate, sendEmailMessage, sendSmsMessage } from "./messaging";
 import type { ChannelMode } from "./types";
 
 type AnySupabase =
@@ -24,10 +18,10 @@ function appBaseUrl(): string {
   );
 }
 
-function channelsForMode(mode: ChannelMode): Array<"email" | "whatsapp"> {
-  if (mode === "email") return ["email"];
-  if (mode === "whatsapp") return ["whatsapp"];
-  return ["email", "whatsapp"];
+function channelsForMode(mode: ChannelMode): Array<"email" | "sms"> {
+  if (mode === "both") return ["email", "sms"];
+  if (mode === "sms") return ["sms"];
+  return ["email"];
 }
 
 export async function enqueueCampaignSends(
@@ -66,7 +60,7 @@ export async function enqueueCampaignSends(
   for (const contact of contacts ?? []) {
     for (const channel of channels) {
       if (channel === "email" && !contact.email) continue;
-      if (channel === "whatsapp" && !contact.phone) continue;
+      if (channel === "sms" && !contact.phone) continue;
 
       const token = crypto.randomUUID().replace(/-/g, "");
       const { error } = await supabase.from("referral_requests").upsert(
@@ -122,11 +116,6 @@ export async function processQueuedRequests(
   const { data: requests, error } = await query;
   if (error) throw new Error(error.message);
 
-  const needsWhatsapp = (requests ?? []).some((r) => r.channel === "whatsapp");
-  const whatsappConnection = needsWhatsapp
-    ? await getValidWhatsappConnection(supabase, userId)
-    : null;
-
   let sent = 0;
   let failed = 0;
 
@@ -164,29 +153,17 @@ export async function processQueuedRequests(
       referral_link: referralLink,
     });
 
-    let result;
-    if (request.channel === "whatsapp") {
-      if (!whatsappConnection) {
-        result = {
-          ok: false as const,
-          error: "WhatsApp is not connected for this account",
-          retryable: false,
-        };
-      } else {
-        result = await sendWhatsAppMessage({
-          phoneNumberId: whatsappConnection.phoneNumberId,
-          accessToken: whatsappConnection.accessToken,
-          toPhone: contact.phone,
-          body,
-        });
-      }
-    } else {
-      result = await sendEmailMessage({
-        toEmail: contact.email,
-        subject: campaign.email_subject || "Refer a friend",
-        body,
-      });
-    }
+    const result =
+      request.channel === "sms"
+        ? await sendSmsMessage({
+            toPhone: contact.phone,
+            body,
+          })
+        : await sendEmailMessage({
+            toEmail: contact.email,
+            subject: campaign.email_subject || "Refer a friend",
+            body,
+          });
 
     if (result.ok) {
       await supabase

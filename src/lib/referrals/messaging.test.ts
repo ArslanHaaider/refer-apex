@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { backoffMs, renderTemplate, sendEmailMessage, sendWhatsAppMessage } from "./messaging";
+import { backoffMs, renderTemplate, sendEmailMessage, sendSmsMessage } from "./messaging";
 
 describe("messaging", () => {
   it("renders template variables", () => {
@@ -22,16 +22,8 @@ describe("messaging", () => {
     assert.ok(delay <= 10_250);
   });
 
-  it("mock whatsapp and email sends succeed", async () => {
+  it("mock email sends succeed", async () => {
     process.env.MESSAGING_MOCK = "true";
-
-    const wa = await sendWhatsAppMessage({
-      phoneNumberId: "123",
-      accessToken: "token",
-      toPhone: "+1555010001",
-      body: "Hello",
-    });
-    assert.equal(wa.ok, true);
 
     const email = await sendEmailMessage({
       toEmail: "ava@example.com",
@@ -39,5 +31,15 @@ describe("messaging", () => {
       body: "Body",
     });
     assert.equal(email.ok, true);
+  });
+
+  it("mock sms sends succeed", async () => {
+    process.env.MESSAGING_MOCK = "true";
+
+    const sms = await sendSmsMessage({
+      toPhone: "+15555551234",
+      body: "Body",
+    });
+    assert.equal(sms.ok, true);
   });
 });

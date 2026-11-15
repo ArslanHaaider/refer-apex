@@ -1,4 +1,4 @@
-export type ChannelMode = "email" | "whatsapp" | "both";
+export type ChannelMode = "email" | "sms" | "both";
 export type CampaignStatus = "draft" | "active" | "paused" | "archived";
 export type DiscountType = "percent" | "fixed";
 export type RequestStatus =
@@ -39,14 +39,6 @@ export type SheetConnectionStatus = {
   lastSyncAt: string | null;
   lastSyncError: string | null;
   status: "connected" | "needs_reauth" | "disconnected" | null;
-  isMock: boolean;
-};
-
-export type WhatsappConnectionStatus = {
-  connected: boolean;
-  displayPhoneNumber: string | null;
-  verifiedName: string | null;
-  status: "connected" | "needs_reauth" | null;
   isMock: boolean;
 };
 
@@ -93,7 +85,7 @@ export type ReferralRequestRow = {
   contactName: string;
   contactEmail: string;
   contactPhone: string;
-  channel: "email" | "whatsapp";
+  channel: "email" | "sms";
   status: RequestStatus;
   sentAt: string | null;
   clickedAt: string | null;

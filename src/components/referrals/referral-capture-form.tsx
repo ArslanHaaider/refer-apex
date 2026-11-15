@@ -88,7 +88,7 @@ export function ReferralCaptureForm({ token }: { token: string }) {
         <p className="text-xs font-semibold uppercase tracking-wide text-emerald">
           Referral sent
         </p>
-        <h1 className="mt-2 text-2xl font-bold tracking-tight text-charcoal">
+        <h1 className="mt-2 text-4xl font-light tracking-[-0.025em] text-charcoal">
           Share this booking link
         </h1>
         <p className="mt-2 text-sm text-gray-600">
@@ -114,7 +114,7 @@ export function ReferralCaptureForm({ token }: { token: string }) {
       <p className="text-xs font-semibold uppercase tracking-wide text-emerald">
         Referral invite
       </p>
-      <h1 className="mt-2 text-2xl font-bold tracking-tight text-charcoal">
+      <h1 className="mt-2 text-4xl font-light tracking-[-0.025em] text-charcoal">
         Refer a friend to {info.businessLabel}
       </h1>
       <p className="mt-2 text-sm text-gray-600">

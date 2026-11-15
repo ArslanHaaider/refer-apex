@@ -21,7 +21,7 @@ export function CtaBanner() {
             <p className="mb-3 text-sm font-medium tracking-widest text-white/80 uppercase">
               Get started
             </p>
-            <h2 className="mx-auto max-w-2xl text-[32px] font-semibold leading-tight tracking-tight text-white">
+            <h2 className="mx-auto max-w-2xl font-light leading-[1.05] tracking-[-0.025em] text-[36px] sm:text-[48px] text-white">
               Ready to Transform Your Med Spa?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-white/90">

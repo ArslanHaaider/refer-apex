@@ -23,7 +23,7 @@ export function StatCard({ data }: StatCardProps) {
           <Icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
         </span>
       </div>
-      <p className="mt-3 text-3xl font-bold tracking-tight text-charcoal">
+      <p className="mt-3 t-num text-5xl text-charcoal">
         {data.value}
         {data.icon === "rating" ? (
           <Star

@@ -1,30 +1,23 @@
 "use client";
 
-import Link from "next/link";
-import { AlertTriangle, CheckCircle2, Mail, MessageCircle, Sparkles } from "lucide-react";
+import { Mail, MessageSquare, Send } from "lucide-react";
 import type { ChannelMode } from "@/lib/referrals/types";
 
 type StepChannelsProps = {
   channelMode: ChannelMode;
   onChannelModeChange: (v: ChannelMode) => void;
-  whatsappConnected: boolean;
-  whatsappDisplayPhoneNumber: string | null;
 };
 
 const CHANNEL_OPTIONS: Array<{ value: ChannelMode; label: string; hint: string; icon: typeof Mail }> = [
   { value: "email", label: "Email", hint: "Send via email only", icon: Mail },
-  { value: "whatsapp", label: "WhatsApp", hint: "Send via WhatsApp only", icon: MessageCircle },
-  { value: "both", label: "Both", hint: "Email and WhatsApp", icon: Sparkles },
+  { value: "sms", label: "SMS", hint: "Send via text message only", icon: MessageSquare },
+  { value: "both", label: "Email + SMS", hint: "Send via both channels", icon: Send },
 ];
 
 export function StepChannels({
   channelMode,
   onChannelModeChange,
-  whatsappConnected,
-  whatsappDisplayPhoneNumber,
 }: StepChannelsProps) {
-  const needsWhatsapp = channelMode === "whatsapp" || channelMode === "both";
-
   return (
     <div className="space-y-5">
       <div className="grid gap-3 sm:grid-cols-3">
@@ -56,26 +49,6 @@ export function StepChannels({
           );
         })}
       </div>
-
-      {needsWhatsapp ? (
-        whatsappConnected ? (
-          <div className="flex items-center gap-2 rounded-xl border border-emerald/20 bg-emerald/5 px-4 py-3 text-sm text-emerald">
-            <CheckCircle2 className="h-4 w-4 shrink-0" strokeWidth={1.75} />
-            WhatsApp connected{whatsappDisplayPhoneNumber ? `: ${whatsappDisplayPhoneNumber}` : ""}
-          </div>
-        ) : (
-          <div className="flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-            <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={1.75} />
-            <span>
-              WhatsApp isn&apos;t connected yet. Connect it once in{" "}
-              <Link href="/dashboard/settings" className="font-semibold underline">
-                Settings
-              </Link>{" "}
-              to send WhatsApp messages.
-            </span>
-          </div>
-        )
-      ) : null}
     </div>
   );
 }

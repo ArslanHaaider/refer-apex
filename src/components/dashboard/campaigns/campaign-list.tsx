@@ -1,13 +1,13 @@
 "use client";
 
-import { Mail, Megaphone, MessageCircle, Pause, Play, Send, Sparkles } from "lucide-react";
+import { Mail, Megaphone, MessageSquare, Pause, Play, Send } from "lucide-react";
 import type { ChannelMode, ReferralCampaign } from "@/lib/referrals/types";
 import { StatusBadge } from "./status-badge";
 
 const CHANNEL_ICON: Record<ChannelMode, typeof Mail> = {
   email: Mail,
-  whatsapp: MessageCircle,
-  both: Sparkles,
+  sms: MessageSquare,
+  both: Send,
 };
 
 type CampaignListProps = {
@@ -21,7 +21,7 @@ type CampaignListProps = {
 export function CampaignList({ campaigns, busy, onActivate, onPause, onDispatch }: CampaignListProps) {
   return (
     <section className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
-      <h2 className="text-lg font-semibold text-charcoal">Your campaigns</h2>
+      <h2 className="text-2xl font-normal tracking-[-0.01em] text-charcoal">Your campaigns</h2>
 
       {campaigns.length === 0 ? (
         <div className="mt-6 flex flex-col items-center justify-center rounded-xl border border-dashed border-gray-200 py-12 text-center">
@@ -53,7 +53,7 @@ export function CampaignList({ campaigns, busy, onActivate, onPause, onDispatch 
                     </div>
                   </div>
                   <p className="mt-2.5 text-xs text-gray-500">
-                    {campaign.channelMode === "both" ? "Email + WhatsApp" : campaign.channelMode}
+                    {campaign.channelMode}
                     {" · "}
                     <span className="font-medium text-gray-700">
                       {campaign.discountType === "percent"

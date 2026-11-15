@@ -83,7 +83,7 @@ export async function PATCH(request: Request, context: RouteContext) {
   }
   if (
     typeof body.channelMode === "string" &&
-    ["email", "whatsapp", "both"].includes(body.channelMode)
+    ["email", "sms", "both"].includes(body.channelMode)
   ) {
     updates.channel_mode = body.channelMode;
   }
@@ -131,31 +131,6 @@ export async function PATCH(request: Request, context: RouteContext) {
       );
     }
 
-    const { data: current } = await supabase
-      .from("referral_campaigns")
-      .select("channel_mode")
-      .eq("id", id)
-      .eq("user_id", auth.userId)
-      .maybeSingle();
-
-    const mode = (updates.channel_mode as string | undefined) ?? current?.channel_mode;
-
-    if (mode === "whatsapp" || mode === "both") {
-      const { data: whatsappConnection } = await supabase
-        .from("whatsapp_connections")
-        .select("status")
-        .eq("user_id", auth.userId)
-        .maybeSingle();
-
-      if (whatsappConnection?.status !== "connected") {
-        return NextResponse.json(
-          {
-            error: "Connect WhatsApp in Settings before activating a campaign with WhatsApp enabled.",
-          },
-          { status: 400 },
-        );
-      }
-    }
   }
 
   const { data, error } = await supabase

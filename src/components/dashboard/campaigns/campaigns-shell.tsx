@@ -313,7 +313,7 @@ export function CampaignsShell() {
             <Megaphone className="h-5 w-5" strokeWidth={1.75} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-charcoal">Campaigns</h1>
+            <h1 className="text-4xl font-light tracking-[-0.025em] text-charcoal">Campaigns</h1>
             <p className="mt-1 text-sm text-gray-600">
               Choose a Google Sheet, configure referral campaigns, and launch messaging.
             </p>
@@ -400,7 +400,7 @@ function OverviewTile({ icon, label, value }: { icon: React.ReactNode; label: st
       </div>
       <div>
         <p className="text-xs font-medium text-gray-500">{label}</p>
-        <p className="text-lg font-semibold text-charcoal">{value}</p>
+        <p className="text-2xl font-normal tracking-[-0.01em] text-charcoal">{value}</p>
       </div>
     </div>
   );

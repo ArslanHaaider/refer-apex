@@ -9,6 +9,7 @@ export const AI_AGENTS = [
   {
     number: "01",
     id: "scout",
+    step: "Review ask",
     name: "Ava",
     role: "Client Review Specialist",
     tagline: "Never Miss The Perfect Moment To Ask For A Review",
@@ -21,11 +22,11 @@ export const AI_AGENTS = [
       "Send automatically",
       "Track delivery and responses",
     ],
-    accent: "emerald",
   },
   {
     number: "02",
     id: "guardian",
+    step: "Sentiment check",
     name: "Mason",
     role: "Reputation Care Specialist",
     tagline: "Protect Your Reputation Before Problems Become Public",
@@ -38,11 +39,11 @@ export const AI_AGENTS = [
       "Encourage positive reviews",
       "Protect online reputation",
     ],
-    accent: "amber",
   },
   {
     number: "03",
     id: "echo",
+    step: "Reply",
     name: "Lena",
     role: "Review Response Specialist",
     tagline: "Reply Like Your Best Employee Every Time",
@@ -55,11 +56,11 @@ export const AI_AGENTS = [
       "Generate personalized replies",
       "Publish instantly",
     ],
-    accent: "blue",
   },
   {
     number: "04",
     id: "connector",
+    step: "Referral",
     name: "Zara",
     role: "Referral Growth Specialist",
     tagline: "Turn Happy Clients Into Your Best Marketing Channel",
@@ -72,11 +73,11 @@ export const AI_AGENTS = [
       "Attribute revenue",
       "Measure ROI",
     ],
-    accent: "violet",
   },
   {
     number: "05",
     id: "revive",
+    step: "Return visit",
     name: "Noah",
     role: "Client Retention Specialist",
     tagline: "Bring Clients Back Before They Forget You",
@@ -89,11 +90,11 @@ export const AI_AGENTS = [
       "Monitor bookings",
       "Optimize return rates",
     ],
-    accent: "rose",
   },
   {
     number: "06",
     id: "pulse",
+    step: "Insights",
     name: "Eli",
     role: "Business Insights Specialist",
     tagline: "See Exactly What's Growing Your Business",
@@ -106,8 +107,11 @@ export const AI_AGENTS = [
       "Analyze revenue",
       "Surface trends",
     ],
-    accent: "emerald",
   },
 ] as const;
+
+export const JOURNEY_START = {
+  step: "Appointment done",
+} as const;
 
 export type AiAgent = (typeof AI_AGENTS)[number];

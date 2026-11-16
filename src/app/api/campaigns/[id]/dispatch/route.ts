@@ -44,6 +44,7 @@ export async function POST(_request: Request, context: RouteContext) {
       queued: queued.created,
       sent: processed.sent,
       failed: processed.failed,
+      skipped: processed.skipped,
     });
   } catch (err) {
     return NextResponse.json(

@@ -121,6 +121,7 @@ export type ReferralEventType =
   | "message_queued"
   | "message_sent"
   | "message_failed"
+  | "message_delivered"
   | "link_clicked"
   | "referral_form_viewed"
   | "referral_submitted"

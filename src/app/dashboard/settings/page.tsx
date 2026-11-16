@@ -1,4 +1,5 @@
 import { GoogleConnectionCard } from "@/components/dashboard/settings/google-connection-card";
+import { SmsGatewayCard } from "@/components/dashboard/settings/sms-gateway-card";
 import { AccountDangerZone } from "@/components/dashboard/settings/account-danger-zone";
 import { requireUser } from "@/lib/auth/get-user";
 
@@ -18,6 +19,7 @@ export default async function SettingsPage() {
 
       <div className="mt-8 space-y-6">
         <GoogleConnectionCard />
+        <SmsGatewayCard />
         <AccountDangerZone />
       </div>
     </div>

@@ -1,14 +1,22 @@
 /**
  * Messaging adapters for referral campaigns.
  * - Email: Resend HTTP API (or mock log when unset)
- * - SMS: ClickSend HTTP API (or mock log when unset)
+ * - SMS: TextBee gateway, one Android device per business (or mock log)
  */
+
+import { sendTextbeeSms, type TextbeeCredentials } from "@/lib/sms/textbee";
 
 export type SendResult =
   | { ok: true; providerId: string }
-  | { ok: false; error: string; retryable: boolean };
+  | {
+      ok: false;
+      error: string;
+      retryable: boolean;
+      /** Credentials were rejected; the caller should stop sending and flag the gateway. */
+      auth?: boolean;
+    };
 
-function isMockMessaging(): boolean {
+export function isMockMessaging(): boolean {
   return process.env.MESSAGING_MOCK !== "false";
 }
 
@@ -62,10 +70,14 @@ export async function sendEmailMessage(input: {
   return { ok: true, providerId: data.id ?? `email-${Date.now()}` };
 }
 
+/**
+ * Sends one SMS through the business's own TextBee device. `gateway` is only
+ * optional in mock mode. For SMS the providerId is the TextBee smsBatchId.
+ */
 export async function sendSmsMessage(input: {
   toPhone: string;
   body: string;
-  senderId?: string;
+  gateway?: TextbeeCredentials;
 }): Promise<SendResult> {
   if (isMockMessaging()) {
     console.info("[mock-sms]", {
@@ -75,54 +87,15 @@ export async function sendSmsMessage(input: {
     return { ok: true, providerId: `mock-sms-${crypto.randomUUID()}` };
   }
 
-  const username = process.env.CLICKSEND_USERNAME;
-  const apiKey = process.env.CLICKSEND_API_KEY;
-  const from = input.senderId ?? process.env.CLICKSEND_SENDER_ID;
-
-  if (!username || !apiKey) {
-    return {
-      ok: false,
-      error: "CLICKSEND_USERNAME / CLICKSEND_API_KEY is not configured",
-      retryable: false,
-    };
+  if (!input.gateway) {
+    return { ok: false, error: "SMS gateway is not connected", retryable: false };
   }
 
-  const res = await fetch("https://rest.clicksend.com/v3/sms/send", {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${Buffer.from(`${username}:${apiKey}`).toString("base64")}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      messages: [
-        {
-          to: input.toPhone,
-          body: input.body,
-          ...(from ? { from } : {}),
-        },
-      ],
-    }),
-  });
-
-  if (!res.ok) {
-    const errText = await res.text();
-    const retryable = res.status === 429 || res.status >= 500;
-    return { ok: false, error: `SMS send failed: ${res.status} ${errText}`, retryable };
+  const result = await sendTextbeeSms(input.gateway, { to: input.toPhone, body: input.body });
+  if (!result.ok) {
+    return { ok: false, error: result.error, retryable: result.retryable, auth: result.auth };
   }
-
-  const data = await res.json();
-  const message = data?.data?.messages?.[0];
-  const status = String(message?.status ?? "").toUpperCase();
-
-  if (status && status !== "SUCCESS" && status !== "QUEUED") {
-    return {
-      ok: false,
-      error: `SMS send failed: ${message?.status ?? "unknown error"}`,
-      retryable: false,
-    };
-  }
-
-  return { ok: true, providerId: message?.message_id ?? `sms-${Date.now()}` };
+  return { ok: true, providerId: result.batchId };
 }
 
 export function renderTemplate(

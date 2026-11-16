@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx --test src/lib/referrals/*.test.ts src/lib/security/*.test.ts"
+    "test": "tsx --test src/lib/referrals/*.test.ts src/lib/security/*.test.ts src/lib/sms/*.test.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

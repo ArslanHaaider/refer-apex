@@ -1,7 +1,18 @@
 import type { createClient } from "@/utils/supabase/server";
 import type { createAdminClient } from "@/utils/supabase/admin";
 import { writeReferralEvent } from "./events";
-import { backoffMs, renderTemplate, sendEmailMessage, sendSmsMessage } from "./messaging";
+import {
+  backoffMs,
+  isMockMessaging,
+  renderTemplate,
+  sendEmailMessage,
+  sendSmsMessage,
+} from "./messaging";
+import {
+  loadGatewayForUser,
+  markGatewayNeedsAttention,
+  type LoadedGateway,
+} from "@/lib/sms/gateway";
 import type { ChannelMode } from "./types";
 
 type AnySupabase =
@@ -97,7 +108,7 @@ export async function processQueuedRequests(
   userId: string,
   campaignId?: string,
   limit = 50,
-): Promise<{ sent: number; failed: number }> {
+): Promise<{ sent: number; failed: number; skipped: number }> {
   let query = supabase
     .from("referral_requests")
     .select(
@@ -118,6 +129,13 @@ export async function processQueuedRequests(
 
   let sent = 0;
   let failed = 0;
+  let skipped = 0;
+
+  // SMS goes through the business's own TextBee device. Without a connected
+  // gateway (or after the key is rejected) SMS requests stay queued untouched.
+  let gateway: LoadedGateway | null = null;
+  let gatewayLoaded = false;
+  let smsBlocked = false;
 
   for (const request of requests ?? []) {
     // Supabase nested select typing can be array or object depending on relationship inference.
@@ -133,8 +151,20 @@ export async function processQueuedRequests(
       continue;
     }
 
+    if (request.channel === "sms" && !isMockMessaging()) {
+      if (!gatewayLoaded) {
+        gateway = await loadGatewayForUser(userId);
+        gatewayLoaded = true;
+        smsBlocked = !gateway || gateway.status !== "connected";
+      }
+      if (smsBlocked) {
+        skipped += 1;
+        continue;
+      }
+    }
+
     const attempts = (request.send_attempts ?? 0) + 1;
-    if (attempts > 1) {
+    if (attempts > 1 && request.channel !== "sms") {
       // Soft backoff for retries (non-blocking sleep for small batches).
       await new Promise((r) => setTimeout(r, Math.min(backoffMs(attempts), 2000)));
     }
@@ -158,12 +188,21 @@ export async function processQueuedRequests(
         ? await sendSmsMessage({
             toPhone: contact.phone,
             body,
+            gateway: gateway ?? undefined,
           })
         : await sendEmailMessage({
             toEmail: contact.email,
             subject: campaign.email_subject || "Refer a friend",
             body,
           });
+
+    if (!result.ok && result.auth) {
+      // Key rejected: don't burn a retry attempt, stop SMS for this run and flag the gateway.
+      smsBlocked = true;
+      skipped += 1;
+      await markGatewayNeedsAttention(userId, "TextBee rejected the API key. Reconnect your gateway.");
+      continue;
+    }
 
     if (result.ok) {
       await supabase
@@ -173,6 +212,9 @@ export async function processQueuedRequests(
           send_attempts: attempts,
           sent_at: new Date().toISOString(),
           last_error: null,
+          ...(request.channel === "sms"
+            ? { provider_batch_id: result.providerId, delivery_status: "pending" }
+            : {}),
         })
         .eq("id", request.id);
 
@@ -210,7 +252,7 @@ export async function processQueuedRequests(
     }
   }
 
-  return { sent, failed };
+  return { sent, failed, skipped };
 }
 
 export function defaultMessageTemplate(): string {
